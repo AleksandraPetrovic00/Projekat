@@ -19,6 +19,5 @@ INSERT INTO OCENA (ocena, korisnik_ocena_id, termin_ocena_id) VALUES ('10', 5, 1
 
 INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme_odrzavanja, cena, sala_termin_id, trening_termin_id) VALUES ('10', 'Ponedeljak 10.00', '500', 1, 3);
 
-INSERT INTO ODRADJENI_TRENING (odradjeni_trening_termin_id, odradjeni_trening_clan_id) VALUES (1, 2);
 
 

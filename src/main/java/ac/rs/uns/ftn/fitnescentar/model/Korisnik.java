@@ -5,8 +5,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-enum Uloge{ADMINISTRATOR, TRENER, CLAN}
-
 @Entity
 public class Korisnik implements Serializable {
     @Id
@@ -42,16 +40,27 @@ public class Korisnik implements Serializable {
     private boolean aktivan;
 
     @OneToMany(mappedBy = "korisnik_trening", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Trening>treninzi = new HashSet<>();
+    private Set<Trening> treninzi = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     private FitnesCentar fitnescentar_korisnik;
 
     @OneToMany(mappedBy = "korisnik_ocena", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Ocena>ocene = new HashSet<>();
+    private Set<Ocena> ocene = new HashSet<>();
 
-    @OneToMany(mappedBy = "odradjeniTrening_clan", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<OdradjeniTrening> clanovi = new HashSet<>();
+
+    //odradjeni treninzi i prijavljeni treninzi
+    @ManyToMany
+    @JoinTable(name = "odradjeniTreninzi",
+            joinColumns = @JoinColumn(name = "korisnik_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "termin_id", referencedColumnName = "id"))
+    private Set<Termin> odradjeniTermini = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "prijavljeniTreninzi",
+            joinColumns = @JoinColumn(name = "korisnik_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "termin_id", referencedColumnName = "id"))
+    private Set<Termin> prijavljeniTermini = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -157,11 +166,19 @@ public class Korisnik implements Serializable {
         this.ocene = ocene;
     }
 
-    public Set<OdradjeniTrening> getClanovi() {
-        return clanovi;
+    public Set<Termin> getOdradjeniTermini() {
+        return odradjeniTermini;
     }
 
-    public void setClanovi(Set<OdradjeniTrening> clanovi) {
-        this.clanovi = clanovi;
+    public void setOdradjeniTermini(Set<Termin> odradjeniTermini) {
+        this.odradjeniTermini = odradjeniTermini;
+    }
+
+    public Set<Termin> getPrijavljeniTermini() {
+        return prijavljeniTermini;
+    }
+
+    public void setPrijavljeniTermini(Set<Termin> prijavljeniTermini) {
+        this.prijavljeniTermini = prijavljeniTermini;
     }
 }

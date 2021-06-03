@@ -30,8 +30,11 @@ public class Termin implements Serializable {
     @OneToMany(mappedBy = "termin_ocena", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Ocena> ocene = new HashSet<>();
 
-    @OneToMany(mappedBy = "odradjeniTrening_termin", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<OdradjeniTrening> odradjeniTermini = new HashSet<>();
+    @ManyToMany(mappedBy = "odradjeniTermini")
+    private Set<Korisnik> korisnici = new HashSet<>();
+
+    @ManyToMany(mappedBy = "prijavljeniTermini")
+    private Set<Korisnik> prijavljeniKorisnici = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -87,13 +90,5 @@ public class Termin implements Serializable {
 
     public void setOcene(Set<Ocena> ocene) {
         this.ocene = ocene;
-    }
-
-    public Set<OdradjeniTrening> getOdradjeniTermini() {
-        return odradjeniTermini;
-    }
-
-    public void setOdradjeniTermini(Set<OdradjeniTrening> odradjeniTermini) {
-        this.odradjeniTermini = odradjeniTermini;
     }
 }

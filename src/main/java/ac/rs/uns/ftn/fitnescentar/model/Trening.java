@@ -5,8 +5,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-enum Tip{HIIT, CORE, YOGA}
-
 @Entity
 public class Trening implements Serializable {
     @Id
@@ -21,17 +19,21 @@ public class Trening implements Serializable {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private Tip tipTreninga;
+    private TipTreninga tipTreninga;
 
     @Column(nullable = false)
     private int trajanje;
+
+    public Trening() {}
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Korisnik korisnik_trening;
 
     //terminska lista
-    @OneToMany(mappedBy = "trening_termin", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "trening_termin", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Termin> terminiTreninga = new HashSet<>();
+
+    public Trening(String naziv, String opis, TipTreninga tipTreninga, int trajanje) {}
 
     public Long getId() {
         return id;
@@ -57,11 +59,11 @@ public class Trening implements Serializable {
         this.opis = opis;
     }
 
-    public Tip getTipTreninga() {
+    public TipTreninga getTipTreninga() {
         return tipTreninga;
     }
 
-    public void setTipTreninga(Tip tipTreninga) {
+    public void setTipTreninga(TipTreninga tipTreninga) {
         this.tipTreninga = tipTreninga;
     }
 
