@@ -30,10 +30,15 @@ public class Trening implements Serializable {
     private Korisnik korisnik_trening;
 
     //terminska lista
-    @OneToMany(mappedBy = "trening_termin", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "treningtermin", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Termin> terminiTreninga = new HashSet<>();
 
-    public Trening(String naziv, String opis, TipTreninga tipTreninga, int trajanje) {}
+    public Trening(String naziv, String opis, TipTreninga tipTreninga, int trajanje) {
+        this.naziv = naziv;
+        this.opis = opis;
+        this.tipTreninga = tipTreninga;
+        this.trajanje = trajanje;
+    }
 
     public Long getId() {
         return id;
@@ -89,5 +94,18 @@ public class Trening implements Serializable {
 
     public void setTerminiTreninga(Set<Termin> terminiTreninga) {
         this.terminiTreninga = terminiTreninga;
+    }
+
+    @Override
+    public String toString() {
+        return "Trening{" +
+                "id=" + id +
+                ", naziv='" + naziv + '\'' +
+                ", opis='" + opis + '\'' +
+                ", tipTreninga=" + tipTreninga +
+                ", trajanje=" + trajanje +
+                ", korisnik_trening=" + korisnik_trening +
+                ", terminiTreninga=" + terminiTreninga +
+                '}';
     }
 }

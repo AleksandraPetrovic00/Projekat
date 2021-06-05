@@ -76,6 +76,38 @@ public class FitnesCentarController {
         return new ResponseEntity<>(newFitnesCentarDTO, HttpStatus.CREATED);
     }
 
+    //azuriranje
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<FitnesCentarDTO> updateFitnesCentar(@PathVariable Long id, @RequestBody FitnesCentarDTO fitnesCentarDTO) throws Exception {
+
+        // Kreiramo objekat klase Trening, tako što za vrednosti atributa uzimamo
+        // vrednosti iz primljenog DTO objekta
+        FitnesCentar fitnesCentar = new FitnesCentar(fitnesCentarDTO.getNaziv(), fitnesCentarDTO.getAdresa(), fitnesCentarDTO.getBrojTelefonaCentrale(), fitnesCentarDTO.getEmail());
+
+        // Pošto menjamo postojeći objekat, u zahtevu ćemo dobiti i njegov ID
+        fitnesCentar.setId(id);
+
+        // Pozivanjem metode servisa ažuriramo podatke o zaposlenom
+        FitnesCentar updatedFitnesCentar = fitnesCentarService.update(fitnesCentar);
+
+        // Mapiramo ažurirani trening na DTO objekat koji vraćamo kroz body odgovora
+        FitnesCentarDTO updatedFitnesCentarDTO= new FitnesCentarDTO(updatedFitnesCentar.getId(), updatedFitnesCentar.getNaziv(), updatedFitnesCentar.getAdresa(), updatedFitnesCentar.getBrojTelefonaCentrale(), updatedFitnesCentar.getEmail());
+
+        // Vraćamo odgovor 200 OK, a kroz body odgovora šaljemo podatke o ažuriranom zaposlenom
+        return new ResponseEntity<>(updatedFitnesCentarDTO, HttpStatus.OK);
+    }
+
+    //brisanje
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deleteFitnesCentar(@PathVariable Long id) {
+        // Pozivanjem metode servisa brišemo zaposlenog po ID-ju
+        this.fitnesCentarService.delete(id);
+
+        // Vraćamo odgovor 204 NO_CONTENT koji signalizira uspešno brisanje
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 
 
 }

@@ -15,14 +15,14 @@ public class Termin implements Serializable {
     private int brojPrijavljenihClanova;
 
     @Column
-    private String vremeOdrzavanja;
+    private double vreme;
 
     @Column(nullable = false)
     private double cena;
 
     //terminska lista: TRENING - TERMIN - SALA
     @ManyToOne(fetch = FetchType.EAGER)
-    private Trening trening_termin;
+    private Trening treningtermin;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Sala sala_termin;
@@ -35,6 +35,15 @@ public class Termin implements Serializable {
 
     @ManyToMany(mappedBy = "prijavljeniTermini")
     private Set<Korisnik> prijavljeniKorisnici = new HashSet<>();
+
+    public Termin() {}
+
+    public Termin(Long id, int brojPrijavljenihClanova, double vreme, double cena) {
+        this.id = id;
+        this.brojPrijavljenihClanova = brojPrijavljenihClanova;
+        this.vreme = vreme;
+        this.cena = cena;
+    }
 
     public Long getId() {
         return id;
@@ -52,12 +61,12 @@ public class Termin implements Serializable {
         this.brojPrijavljenihClanova = brojPrijavljenihClanova;
     }
 
-    public String getVremeOdrzavanja() {
-        return vremeOdrzavanja;
+    public double getVreme() {
+        return vreme;
     }
 
-    public void setVremeOdrzavanja(String vremeOdrzavanja) {
-        this.vremeOdrzavanja = vremeOdrzavanja;
+    public void setVreme(double vreme) {
+        this.vreme = vreme;
     }
 
     public double getCena() {
@@ -68,12 +77,12 @@ public class Termin implements Serializable {
         this.cena = cena;
     }
 
-    public Trening getTrening_termin() {
-        return trening_termin;
+    public Trening getTreningtermin() {
+        return treningtermin;
     }
 
-    public void setTrening_termin(Trening trening_termin) {
-        this.trening_termin = trening_termin;
+    public void setTreningtermin(Trening treningtermin) {
+        this.treningtermin = treningtermin;
     }
 
     public Sala getSala_termin() {
@@ -90,5 +99,21 @@ public class Termin implements Serializable {
 
     public void setOcene(Set<Ocena> ocene) {
         this.ocene = ocene;
+    }
+
+    public Set<Korisnik> getKorisnici() {
+        return korisnici;
+    }
+
+    public void setKorisnici(Set<Korisnik> korisnici) {
+        this.korisnici = korisnici;
+    }
+
+    public Set<Korisnik> getPrijavljeniKorisnici() {
+        return prijavljeniKorisnici;
+    }
+
+    public void setPrijavljeniKorisnici(Set<Korisnik> prijavljeniKorisnici) {
+        this.prijavljeniKorisnici = prijavljeniKorisnici;
     }
 }

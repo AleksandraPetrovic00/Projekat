@@ -13,11 +13,23 @@ INSERT INTO TRENING (naziv, opis, tip_treninga, trajanje, korisnik_trening_id) V
 INSERT INTO TRENING (naziv, opis, tip_treninga, trajanje, korisnik_trening_id) VALUES ('Trening2', 'Gluteus&Core','CORE', '120', 3);
 INSERT INTO TRENING (naziv, opis, tip_treninga, trajanje, korisnik_trening_id) VALUES ('Trening3', 'Tone Up','HIIT', '120', 7);
 
-INSERT INTO SALA (kapacitet, oznaka_sale, fitnescentar_sala_id) VALUES ('20', 'A1', 1);
+INSERT INTO SALA (kapacitet, oznaka_sale, fitnescentar_sala_id) VALUES ('20', 'A1', 2);
+INSERT INTO SALA (kapacitet, oznaka_sale, fitnescentar_sala_id) VALUES ('30', 'A2', 1);
+INSERT INTO SALA (kapacitet, oznaka_sale, fitnescentar_sala_id) VALUES ('25', 'A3', 2);
 
-INSERT INTO OCENA (ocena, korisnik_ocena_id, termin_ocena_id) VALUES ('10', 5, 1);
+INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('10', '9.00', '500', 1, 3);
+INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('12', '8.00', '450', 1, 2);
+INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('8', '10.00', '500', 1, 3);
+INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('15', '8.00', '500', 1, 1);
+INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('12', '8.00', '450', 1, 2);
 
-INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme_odrzavanja, cena, sala_termin_id, trening_termin_id) VALUES ('10', 'Ponedeljak 10.00', '500', 1, 3);
+INSERT INTO OCENA (ocena, korisnik_ocena_id, termin_ocena_id) VALUES ('9', 2, 3);
+INSERT INTO OCENA (ocena, korisnik_ocena_id, termin_ocena_id) VALUES ('10', 3, 2);
+
+
+
+
+
 
 
 

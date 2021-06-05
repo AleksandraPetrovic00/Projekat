@@ -1,6 +1,5 @@
 package ac.rs.uns.ftn.fitnescentar.contoller;
 
-
 import ac.rs.uns.ftn.fitnescentar.model.TipTreninga;
 import ac.rs.uns.ftn.fitnescentar.model.Trening;
 import ac.rs.uns.ftn.fitnescentar.model.dto.TreningDTO;
@@ -31,12 +30,12 @@ public class TreningController {
 
         Trening trening = this.treningService.findOne(id);
 
-        TreningDTO treningDTO = new TreningDTO();
+        TreningDTO treningDTO =  new TreningDTO();
         treningDTO.setId(trening.getId());
         treningDTO.setNaziv(trening.getNaziv());
         treningDTO.setOpis(trening.getOpis());
-        treningDTO.setTrajanje(trening.getTrajanje());
         treningDTO.setTipTreninga(trening.getTipTreninga());
+        treningDTO.setTrajanje(trening.getTrajanje());
 
         return new ResponseEntity<>(treningDTO, HttpStatus.OK);
     }
@@ -57,9 +56,9 @@ public class TreningController {
     }
 
     //pretraga po nazivu
-    @GetMapping(value="/{naziv}")
+    @GetMapping(value="/naziv/{naziv}")
     public ResponseEntity<List<TreningDTO>> getTreninziByNaziv(@PathVariable("naziv") String naziv) {
-        List<Trening> treninziListaNaziv = this.treningService.findByNaziv(naziv);
+        List<Trening> treninziListaNaziv = this.treningService.pretragaPoNazivu(naziv);
 
         List<TreningDTO> treninziNazivDTOS = new ArrayList<>();
 
@@ -73,9 +72,9 @@ public class TreningController {
     }
 
     //pretraga po tipu
-    @GetMapping(value="/{tipTreninga}")
-    public ResponseEntity<List<TreningDTO>> getTreninziByNaziv(@PathVariable("tipTreninga") TipTreninga tipTreninga) {
-        List<Trening> treninziListaTip = this.treningService.findByTipTreninga(tipTreninga);
+    @GetMapping(value="/tip/{tipTreninga}")
+    public ResponseEntity<List<TreningDTO>> getTreninziByTipTreninga(@PathVariable("tipTreninga") TipTreninga tipTreninga) {
+        List<Trening> treninziListaTip = this.treningService.pretragaPoTipu(tipTreninga);
 
         List<TreningDTO> treninziTipDTOS = new ArrayList<>();
 
@@ -89,9 +88,9 @@ public class TreningController {
     }
 
     //pretraga po opisu
-    @GetMapping(value="/{opis}")
+    @GetMapping(value="/opis/{opis}")
     public ResponseEntity<List<TreningDTO>> getTreninziByOpis(@PathVariable("opis") String opis) {
-        List<Trening> treninziListaOpis = this.treningService.findByOpis(opis);
+        List<Trening> treninziListaOpis = this.treningService.pretragaPoOpisu(opis);
 
         List<TreningDTO> treninziOpisDTOS = new ArrayList<>();
 
@@ -105,7 +104,8 @@ public class TreningController {
     }
 
     //novi trening
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TreningDTO> createTrening(@RequestBody TreningDTO treningDTO) throws Exception {
 
         Trening trening = new Trening(treningDTO.getNaziv(), treningDTO.getOpis(), treningDTO.getTipTreninga(), treningDTO.getTrajanje());
@@ -115,28 +115,6 @@ public class TreningController {
         TreningDTO newTreningDTO = new TreningDTO(newTrening.getId(), newTrening.getNaziv(), newTrening.getOpis(), newTrening.getTipTreninga(), newTrening.getTrajanje());
 
         return new ResponseEntity<>(newTreningDTO, HttpStatus.CREATED);
-    }
-
-    //azuriranje
-    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TreningDTO> updateTrening(@PathVariable Long id, @RequestBody TreningDTO treningDTO) throws Exception {
-
-        // Kreiramo objekat klase Trening, tako što za vrednosti atributa uzimamo
-        // vrednosti iz primljenog DTO objekta
-        Trening trening = new Trening(treningDTO.getNaziv(), treningDTO.getOpis(), treningDTO.getTipTreninga(), treningDTO.getTrajanje());
-
-        // Pošto menjamo postojeći objekat, u zahtevu ćemo dobiti i njegov ID
-        trening.setId(id);
-
-        // Pozivanjem metode servisa ažuriramo podatke o zaposlenom
-        Trening updatedTrening = treningService.update(trening);
-
-        // Mapiramo ažurirani trening na DTO objekat koji vraćamo kroz body odgovora
-        TreningDTO updatedTreningDTO = new TreningDTO(updatedTrening.getId(), updatedTrening.getNaziv(), updatedTrening.getOpis(), updatedTrening.getTipTreninga(), updatedTrening.getTrajanje());
-
-        // Vraćamo odgovor 200 OK, a kroz body odgovora šaljemo podatke o ažuriranom zaposlenom
-        return new ResponseEntity<>(updatedTreningDTO, HttpStatus.OK);
     }
 
     //brisanje

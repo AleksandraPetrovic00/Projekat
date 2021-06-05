@@ -11,15 +11,13 @@ public interface TreningService {
 
     List<Trening> findAll();
 
-    List<Trening> findByNaziv(String naziv);
+    List<Trening> pretragaPoNazivu(String naziv);
 
-    List<Trening> findByTipTreninga(TipTreninga tipTreninga);
+    List<Trening> pretragaPoTipu(TipTreninga tipTreninga);
 
-    List<Trening> findByOpis(String opis);
+    List<Trening> pretragaPoOpisu(String opis);
 
     Trening create(Trening trening) throws Exception;
-
-    Trening update(Trening trening) throws Exception;
 
     void delete(Long id);
 

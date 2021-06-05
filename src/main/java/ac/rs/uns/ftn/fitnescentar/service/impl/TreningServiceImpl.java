@@ -33,21 +33,22 @@ public class TreningServiceImpl implements TreningService {
     }
 
     @Override
-    public List<Trening> findByNaziv(String naziv){
+    public List<Trening> pretragaPoNazivu(String naziv){
+
         List<Trening> treninzi = this.treningRepository.findAllByNaziv(naziv);
 
         return treninzi;
     }
 
     @Override
-    public List<Trening> findByTipTreninga(TipTreninga tipTreninga){
+    public List<Trening> pretragaPoTipu(TipTreninga tipTreninga){
         List<Trening> treninzi = this.treningRepository.findAllByTipTreninga(tipTreninga);
 
         return treninzi;
     }
 
     @Override
-    public List<Trening> findByOpis(String opis) {
+    public List<Trening> pretragaPoOpisu(String opis) {
         List<Trening> treninzi = this.treningRepository.findAllByOpis(opis);
 
         return treninzi;
@@ -61,21 +62,6 @@ public class TreningServiceImpl implements TreningService {
         Trening newTrening = this.treningRepository.save(trening);
 
         return newTrening;
-    }
-
-    @Override
-    public Trening update(Trening trening) throws Exception {
-        Trening treningToUpdate = this.treningRepository.getOne(trening.getId());
-        if (treningToUpdate == null) {
-            throw new Exception("Trening ne postoji");
-        }
-
-        // Postavljanje novog treninga
-        treningToUpdate.setOpis(trening.getOpis());
-
-        // Čuvanje u bazi
-        Trening savedTrening = this.treningRepository.save(treningToUpdate);
-        return savedTrening;
     }
 
     @Override

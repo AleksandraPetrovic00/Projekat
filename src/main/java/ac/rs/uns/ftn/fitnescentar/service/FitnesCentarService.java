@@ -12,4 +12,8 @@ public interface FitnesCentarService {
 
     FitnesCentar create(FitnesCentar fitnesCentar) throws Exception;
 
+    FitnesCentar update(FitnesCentar fitnesCentar) throws Exception;
+
+    void delete(Long id);
+
 }

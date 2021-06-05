@@ -38,4 +38,25 @@ public class FitnesCentarServiceImpl implements FitnesCentarService {
         FitnesCentar newFitnesCentar = this.fitnesCentarRepository.save(fitnesCentar);
         return newFitnesCentar;
     }
+
+    @Override
+    public FitnesCentar update(FitnesCentar fitnesCentar) throws Exception {
+        FitnesCentar fitnesCentarToUpdate = this.fitnesCentarRepository.getOne(fitnesCentar.getId());
+        if (fitnesCentarToUpdate == null) {
+            throw new Exception("Fitnes centar ne postoji");
+        }
+
+        // Postavljanje nove adrese fitnes centra
+        fitnesCentarToUpdate.setAdresa(fitnesCentar.getAdresa());
+
+        // Čuvanje u bazi
+        FitnesCentar savedFitnesCentar = this.fitnesCentarRepository.save(fitnesCentarToUpdate);
+        return savedFitnesCentar;
+    }
+
+    @Override
+    public void delete(Long id) {
+        this.fitnesCentarRepository.deleteById(id);
+    }
+
 }
