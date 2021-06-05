@@ -6,6 +6,7 @@ import ac.rs.uns.ftn.fitnescentar.service.TerminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
 import java.util.List;
 
 
@@ -20,25 +21,53 @@ public class TerminServiceImpl implements TerminService {
     }
 
     @Override
-    public List<Termin> pronadjiPoCeni(double cena){
-        List<Termin> termini = this.terminRepository.findByCenaOrderByVreme(cena);
+    public List<Termin> sviPoCeniRastce(){
+        List<Termin> termini = this.terminRepository.findAllByOrderByCenaAsc();
 
         return termini;
     }
 
     @Override
-    public List<Termin> pronadjiPoVremenuPosle(double vreme){
-        List<Termin> termini = this.terminRepository.findByVremeAfterOrderByVreme(vreme);
+    public List<Termin> sviPoCeniOpadajuce(){
+        List<Termin> termini = this.terminRepository.findAllByOrderByCenaDesc();
 
         return termini;
     }
 
-    /*@Override
-    public List<Termin> pronadjiPoCeniINazivu(double cena, String naziv){
-        List<Termin> termini = this.terminRepository.findByCenaAndTreningterminNazivContaining(cena, naziv);
+    @Override
+    public List<Termin> sviPoVremenuRastuce(){
+        List<Termin> termini = this.terminRepository.findAllByOrderByVremeAsc();
 
         return termini;
-    }*/
+    }
+
+    @Override
+    public List<Termin> sviPoVremenuOpadajuce(){
+        List<Termin> termini = this.terminRepository.findAllByOrderByVremeDesc();
+
+        return termini;
+    }
+
+    @Override
+    public List<Termin> pronadjiPoCeni(double cena){
+        List<Termin> termini = this.terminRepository.findByCenaLessThanEqualOrderByVremeAsc(cena);
+
+        return termini;
+    }
+
+    @Override
+    public List<Termin> pronadjiPoVremenuPosle(Time vreme){
+        List<Termin> termini = this.terminRepository.findByVremeAfterOrderByVremeAsc(vreme);
+
+        return termini;
+    }
+
+    @Override
+    public List<Termin> pronadjiPoCeniINazivu(double cena, String naziv){
+        List<Termin> termini = this.terminRepository.findByCenaLessThanEqualAndTreningterminNazivContaining(cena, naziv);
+
+        return termini;
+    }
 
 
 }

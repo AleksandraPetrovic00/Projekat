@@ -2,6 +2,7 @@ package ac.rs.uns.ftn.fitnescentar.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ public class Termin implements Serializable {
     private int brojPrijavljenihClanova;
 
     @Column
-    private double vreme;
+    private Time vreme;
 
     @Column(nullable = false)
     private double cena;
@@ -38,7 +39,7 @@ public class Termin implements Serializable {
 
     public Termin() {}
 
-    public Termin(Long id, int brojPrijavljenihClanova, double vreme, double cena) {
+    public Termin(Long id, int brojPrijavljenihClanova, Time vreme, double cena) {
         this.id = id;
         this.brojPrijavljenihClanova = brojPrijavljenihClanova;
         this.vreme = vreme;
@@ -61,11 +62,11 @@ public class Termin implements Serializable {
         this.brojPrijavljenihClanova = brojPrijavljenihClanova;
     }
 
-    public double getVreme() {
+    public Time getVreme() {
         return vreme;
     }
 
-    public void setVreme(double vreme) {
+    public void setVreme(Time vreme) {
         this.vreme = vreme;
     }
 

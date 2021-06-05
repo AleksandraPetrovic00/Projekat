@@ -1,16 +1,18 @@
 package ac.rs.uns.ftn.fitnescentar.model.dto;
 
+import java.sql.Time;
+
 public class TerminTrDTO {
 
     private Long id;
-    private int brojPrijavljenihClanova;
-    private double vreme;
-    private double cena;
     private String naziv;
+    private int brojPrijavljenihClanova;
+    private Time vreme;
+    private double cena;
 
     public TerminTrDTO() {}
 
-    public TerminTrDTO(Long id, int brojPrijavljenihClanova, double vreme, double cena, String naziv) {
+    public TerminTrDTO(Long id, String naziv, int brojPrijavljenihClanova, Time vreme, double cena) {
         this.id = id;
         this.brojPrijavljenihClanova = brojPrijavljenihClanova;
         this.vreme = vreme;
@@ -34,11 +36,11 @@ public class TerminTrDTO {
         this.brojPrijavljenihClanova = brojPrijavljenihClanova;
     }
 
-    public double getVreme() {
+    public Time getVreme() {
         return vreme;
     }
 
-    public void setVreme(double vreme) {
+    public void setVreme(Time vreme) {
         this.vreme = vreme;
     }
 
