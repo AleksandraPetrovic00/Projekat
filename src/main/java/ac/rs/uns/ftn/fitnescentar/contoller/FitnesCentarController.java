@@ -60,7 +60,7 @@ public class FitnesCentarController {
     }
 
     //kreiranje novog fitnes centra
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/dodaj",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<FitnesCentarDTO> createFitnesCentar(@RequestBody FitnesCentarDTO fitnesCentarDTO) throws Exception {
 
         //kreiramo novi objekat uzimanjem podataka iz pristiglog DTO

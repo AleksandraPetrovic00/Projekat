@@ -1,5 +1,7 @@
 package ac.rs.uns.ftn.fitnescentar.model.dto;
 
+import ac.rs.uns.ftn.fitnescentar.model.Uloge;
+
 public class KorisnikDTO {
 
     private Long id;
@@ -10,10 +12,12 @@ public class KorisnikDTO {
     private String kontaktTelefon;
     private String emailAdresa;
     private String datumRodjenja;
+    private Uloge uloga;
+    private boolean aktivan;
 
     public KorisnikDTO() {}
 
-    public KorisnikDTO(Long id, String korisnickoIme, String lozinka, String ime, String prezime, String kontaktTelefon, String emailAdresa, String datumRodjenja) {
+    public KorisnikDTO(Long id, String korisnickoIme, String lozinka, String ime, String prezime, String kontaktTelefon, String emailAdresa, String datumRodjenja, Uloge uloga, boolean aktivan) {
         this.id = id;
         this.korisnickoIme = korisnickoIme;
         this.lozinka = lozinka;
@@ -22,6 +26,12 @@ public class KorisnikDTO {
         this.kontaktTelefon = kontaktTelefon;
         this.emailAdresa = emailAdresa;
         this.datumRodjenja = datumRodjenja;
+        this.uloga = uloga;
+        if(uloga==Uloge.TRENER){
+            this.aktivan=false;
+        }else{
+            this.aktivan=true;
+        }
     }
 
     public Long getId() {
@@ -86,5 +96,21 @@ public class KorisnikDTO {
 
     public void setDatumRodjenja(String datumRodjenja) {
         this.datumRodjenja = datumRodjenja;
+    }
+
+    public Uloge getUloga() {
+        return uloga;
+    }
+
+    public void setUloga(Uloge uloga) {
+        this.uloga = uloga;
+    }
+
+    public boolean isAktivan() {
+        return aktivan;
+    }
+
+    public void setAktivan(boolean aktivan) {
+        this.aktivan = aktivan;
     }
 }

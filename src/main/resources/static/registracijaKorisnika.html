@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Athlemotive - Sign Up</title>
-    <link rel="stylesheet" href="signupstyle.css">
+    <link rel="stylesheet" href="signupstyle.css"><script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -18,7 +21,7 @@
     </div>
 
     <div class="signup-box">
-        <form method="GET" id="reistracijaKorisnika">
+        <div id="reistracijaKorisnika">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                     </svg>
@@ -49,14 +52,14 @@
                     </svg>
                 <input type="date" placeholder="Birthday"  name="datumRodjenja" id="datumRodjenja_signup" value="" ><br><br>
 
-                <button type="submit" id="signup_btn">Sign Up</button>
-        </form>
+                <button type="button" id="signup_btn">Sign Up</button>
+        </div>
     </div>
 
     <div class="nav">
         <ul>
             <li><a href="login.html" id="home">HOME</a></li>
-            <li><a href="registracijaKorisnika.html" id="signup">SIGN UP</a></li>
+            <li><a href="registracijaKorisnika.html" id="signUp">SIGN UP</a></li>
             <li><a href="registracijaTrenera.html" id="coach">REGISTER AS A COACH</a></li>
         </ul>
     </div>
@@ -66,5 +69,6 @@
     </div>
 
     
+    <script src="registracijaKorisnika.js"></script>
 </body>
 </html>

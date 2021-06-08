@@ -39,6 +39,20 @@ public class Korisnik implements Serializable {
     @Column(nullable = false)
     private boolean aktivan;
 
+    public Korisnik() {}
+
+    public Korisnik(String korisnickoIme, String lozinka, String ime, String prezime, String kontaktTelefon, String emailAdresa, String datumRodjenja, Uloge uloga, boolean aktivan) {
+        this.korisnickoIme = korisnickoIme;
+        this.lozinka = lozinka;
+        this.ime = ime;
+        this.prezime = prezime;
+        this.kontaktTelefon = kontaktTelefon;
+        this.emailAdresa = emailAdresa;
+        this.datumRodjenja = datumRodjenja;
+        this.uloga = uloga;
+        this.aktivan = aktivan;
+    }
+
     @OneToMany(mappedBy = "korisnik_trening", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Trening> treninzi = new HashSet<>();
 
@@ -61,6 +75,7 @@ public class Korisnik implements Serializable {
             joinColumns = @JoinColumn(name = "korisnik_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "termin_id", referencedColumnName = "id"))
     private Set<Termin> prijavljeniTermini = new HashSet<>();
+
 
     public Long getId() {
         return id;

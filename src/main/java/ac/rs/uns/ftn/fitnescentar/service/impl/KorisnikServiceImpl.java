@@ -1,4 +1,48 @@
 package ac.rs.uns.ftn.fitnescentar.service.impl;
 
-public class KorisnikServiceImpl {
+import ac.rs.uns.ftn.fitnescentar.model.FitnesCentar;
+import ac.rs.uns.ftn.fitnescentar.model.Korisnik;
+import ac.rs.uns.ftn.fitnescentar.repository.KorisnikRepository;
+import ac.rs.uns.ftn.fitnescentar.service.KorisnikService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class KorisnikServiceImpl implements KorisnikService {
+
+    private final KorisnikRepository korisnikRepository;
+
+    @Autowired
+    public KorisnikServiceImpl(KorisnikRepository korisnikRepository) {
+        this.korisnikRepository = korisnikRepository;
+    }
+
+    @Override
+    public Korisnik findOne(Long id) {
+        Korisnik korisnik = this.korisnikRepository.getOne(id);
+        return korisnik;
+    }
+
+    @Override
+    public List<Korisnik> findAll() {
+        List<Korisnik> korisnici = this.korisnikRepository.findAll();
+        return korisnici;
+    }
+
+    @Override
+    public Korisnik create(Korisnik korisnik) throws Exception {
+        if(korisnik.getId() != null){
+            throw new Exception("ID mora biti null!");
+        }
+        Korisnik newKorisnik = this.korisnikRepository.save(korisnik);
+        return newKorisnik;
+    }
+
+    @Override
+    public void delete(Long id) {
+        this.korisnikRepository.deleteById(id);
+    }
+
 }
