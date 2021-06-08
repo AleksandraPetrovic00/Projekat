@@ -31,7 +31,7 @@ public class TerminController {
         List<TerminTrDTO> terminTrDTOS = new ArrayList<>();
 
         for(Termin termin : terminiList){
-            TerminTrDTO terminTrDTO = new TerminTrDTO(termin.getId(), termin.getTreningtermin().getNaziv(), termin.getBrojPrijavljenihClanova(), termin.getVreme(), termin.getCena(), termin.getSala_termin().getOznakaSale());
+            TerminTrDTO terminTrDTO = new TerminTrDTO(termin.getId(), termin.getTreningtermin().getNaziv(), termin.getBrojPrijavljenihClanova(), termin.getVreme(), termin.getCena(), termin.getTreningtermin().getOpis(), termin.getSala_termin().getOznakaSale());
 
             terminTrDTOS.add(terminTrDTO);
         }
@@ -46,7 +46,7 @@ public class TerminController {
         List<TerminTrDTO> terminTrDTOS = new ArrayList<>();
 
         for(Termin termin : terminiList){
-            TerminTrDTO terminTrDTO = new TerminTrDTO(termin.getId(), termin.getTreningtermin().getNaziv(), termin.getBrojPrijavljenihClanova(), termin.getVreme(), termin.getCena(), termin.getSala_termin().getOznakaSale());
+            TerminTrDTO terminTrDTO = new TerminTrDTO(termin.getId(), termin.getTreningtermin().getNaziv(), termin.getBrojPrijavljenihClanova(), termin.getVreme(), termin.getCena(), termin.getTreningtermin().getOpis(), termin.getSala_termin().getOznakaSale());
 
             terminTrDTOS.add(terminTrDTO);
         }
@@ -61,7 +61,7 @@ public class TerminController {
         List<TerminTrDTO> terminTrDTOS = new ArrayList<>();
 
         for(Termin termin : terminiList){
-            TerminTrDTO terminTrDTO = new TerminTrDTO(termin.getId(), termin.getTreningtermin().getNaziv(), termin.getBrojPrijavljenihClanova(), termin.getVreme(), termin.getCena(), termin.getSala_termin().getOznakaSale());
+            TerminTrDTO terminTrDTO = new TerminTrDTO(termin.getId(), termin.getTreningtermin().getNaziv(), termin.getBrojPrijavljenihClanova(), termin.getVreme(), termin.getCena(), termin.getTreningtermin().getOpis(), termin.getSala_termin().getOznakaSale());
 
             terminTrDTOS.add(terminTrDTO);
         }
@@ -76,7 +76,7 @@ public class TerminController {
         List<TerminTrDTO> terminTrDTOS = new ArrayList<>();
 
         for(Termin termin : terminiList){
-            TerminTrDTO terminTrDTO = new TerminTrDTO(termin.getId(), termin.getTreningtermin().getNaziv(), termin.getBrojPrijavljenihClanova(), termin.getVreme(), termin.getCena(), termin.getSala_termin().getOznakaSale());
+            TerminTrDTO terminTrDTO = new TerminTrDTO(termin.getId(), termin.getTreningtermin().getNaziv(), termin.getBrojPrijavljenihClanova(), termin.getVreme(), termin.getCena(), termin.getTreningtermin().getOpis(), termin.getSala_termin().getOznakaSale());
 
             terminTrDTOS.add(terminTrDTO);
         }
@@ -93,7 +93,7 @@ public class TerminController {
         List<TerminTrDTO> terminTrDTOS = new ArrayList<>();
 
         for(Termin termin : termins) {
-            TerminTrDTO terminTrDTO = new TerminTrDTO(termin.getId(), termin.getTreningtermin().getNaziv(), termin.getBrojPrijavljenihClanova(), termin.getVreme(), termin.getCena(), termin.getSala_termin().getOznakaSale());
+            TerminTrDTO terminTrDTO = new TerminTrDTO(termin.getId(), termin.getTreningtermin().getNaziv(), termin.getBrojPrijavljenihClanova(), termin.getVreme(), termin.getCena(), termin.getTreningtermin().getOpis(), termin.getSala_termin().getOznakaSale());
 
             terminTrDTOS.add(terminTrDTO);
         }
@@ -109,7 +109,7 @@ public class TerminController {
         List<TerminTrDTO> terminTrDTOS = new ArrayList<>();
 
         for(Termin termin : termins) {
-            TerminTrDTO terminTrDTO = new TerminTrDTO(termin.getId(), termin.getTreningtermin().getNaziv(), termin.getBrojPrijavljenihClanova(), termin.getVreme(), termin.getCena(), termin.getSala_termin().getOznakaSale());
+            TerminTrDTO terminTrDTO = new TerminTrDTO(termin.getId(), termin.getTreningtermin().getNaziv(), termin.getBrojPrijavljenihClanova(), termin.getVreme(), termin.getCena(), termin.getTreningtermin().getOpis(), termin.getSala_termin().getOznakaSale());
 
             terminTrDTOS.add(terminTrDTO);
         }
@@ -126,7 +126,7 @@ public class TerminController {
 
         for(Termin termin : termins) {
             TerminTrDTO terminTrDTO = new TerminTrDTO(termin.getId(), termin.getTreningtermin().getNaziv(), termin.getBrojPrijavljenihClanova(),
-                    termin.getVreme(), termin.getCena(), termin.getSala_termin().getOznakaSale());
+                    termin.getVreme(), termin.getCena(), termin.getTreningtermin().getOpis(), termin.getSala_termin().getOznakaSale());
 
             terminTrDTOS.add(terminTrDTO);
         }

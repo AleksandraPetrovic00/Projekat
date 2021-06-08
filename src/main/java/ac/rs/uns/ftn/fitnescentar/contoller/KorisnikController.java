@@ -3,6 +3,7 @@ package ac.rs.uns.ftn.fitnescentar.contoller;
 import ac.rs.uns.ftn.fitnescentar.model.Korisnik;
 import ac.rs.uns.ftn.fitnescentar.model.Uloge;
 import ac.rs.uns.ftn.fitnescentar.model.dto.KorisnikDTO;
+import ac.rs.uns.ftn.fitnescentar.model.dto.KorisnikPrijavaDTO;
 import ac.rs.uns.ftn.fitnescentar.service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -66,7 +67,7 @@ public class KorisnikController {
 
     }
 
-    @GetMapping(value = "zahtevi", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/zahtevi", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<KorisnikDTO>> getZahtevi() {
 
         //dobijamo sve fitnes centre
@@ -87,22 +88,71 @@ public class KorisnikController {
         }
 
         return new ResponseEntity<>(korisnikDTOS, HttpStatus.OK);
-
     }
 
-    @PostMapping(value = "/registracija")
-    public ResponseEntity<KorisnikDTO> register(@RequestBody KorisnikDTO korisnikDTO) throws Exception {
+    //azuriranje statusa
+    @PutMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<KorisnikDTO> updateKorisnik(@PathVariable Long id, @RequestBody KorisnikDTO korisnikDTO) throws Exception {
 
         Korisnik korisnik = new Korisnik(korisnikDTO.getKorisnickoIme(), korisnikDTO.getLozinka(), korisnikDTO.getIme(), korisnikDTO.getPrezime(), korisnikDTO.getKontaktTelefon(), korisnikDTO.getEmailAdresa(), korisnikDTO.getDatumRodjenja(), korisnikDTO.getUloga(), korisnikDTO.isAktivan());
 
+        korisnik.setId(id);
+
+        Korisnik updatedKorisnik = korisnikService.update(korisnik);
+
+        KorisnikDTO updatedKorisnikDTO= new KorisnikDTO(updatedKorisnik.getId(), updatedKorisnik.getKorisnickoIme(), updatedKorisnik.getLozinka(), updatedKorisnik.getIme(), updatedKorisnik.getPrezime(), updatedKorisnik.getKontaktTelefon(), updatedKorisnik.getEmailAdresa(), updatedKorisnik.getDatumRodjenja(), updatedKorisnik.getUloga(), updatedKorisnik.isAktivan());
+
+        return new ResponseEntity<>(updatedKorisnikDTO, HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/accept", produces = MediaType.APPLICATION_JSON_VALUE)
+    public HttpStatus odobriZahtev(@RequestBody List<Long> ids) throws Exception{
+        for(Long id: ids){
+            Korisnik korisnik = korisnikService.findOne(id);
+            korisnik.setAktivan(true);
+            korisnikService.update(korisnik);
+        }
+        return (HttpStatus.OK);
+    }
+
+
+    @PostMapping(value = "/registracija")
+    public ResponseEntity<KorisnikDTO> register(@RequestBody KorisnikDTO korisnikDTO) throws Exception{
+
+        Korisnik korisnik = new Korisnik(korisnikDTO.getKorisnickoIme(), korisnikDTO.getLozinka(), korisnikDTO.getIme(), korisnikDTO.getPrezime(), korisnikDTO.getKontaktTelefon(), korisnikDTO.getEmailAdresa(), korisnikDTO.getDatumRodjenja(), korisnikDTO.getUloga(), korisnikDTO.isAktivan());
+
+        if(korisnik.getUloga()==Uloge.TRENER) {
+
+            korisnik.setAktivan(false);
+            //System.out.println(korisnik.getUloga());
+            //System.out.println(korisnik.isAktivan());
+        }else{
+            korisnik.setAktivan(true);
+            //System.out.println(korisnik.getUloga());
+            //System.out.println(korisnik.isAktivan());
+        }
+
         Korisnik newKorisnik = korisnikService.create(korisnik);
 
-        KorisnikDTO newKorisnikDTO = new KorisnikDTO(newKorisnik.getId(), newKorisnik.getKorisnickoIme(), newKorisnik.getLozinka(), newKorisnik.getIme(), newKorisnik.getPrezime(), newKorisnik.getKontaktTelefon(), newKorisnik.getEmailAdresa(), newKorisnik.getDatumRodjenja(), newKorisnik.getUloga(), newKorisnik.isAktivan());
+            KorisnikDTO newKorisnikDTO = new KorisnikDTO(newKorisnik.getId(), newKorisnik.getKorisnickoIme(), newKorisnik.getLozinka(), newKorisnik.getIme(), newKorisnik.getPrezime(), newKorisnik.getKontaktTelefon(), newKorisnik.getEmailAdresa(), newKorisnik.getDatumRodjenja(), newKorisnik.getUloga(), newKorisnik.isAktivan());
 
         //201 CREATED i podaci o novom objektu
         return new ResponseEntity<>(newKorisnikDTO, HttpStatus.CREATED);
     }
 
+    @PostMapping(value = "/prijava")
+    public ResponseEntity<KorisnikDTO> login(@RequestBody KorisnikPrijavaDTO korisnikPrijavaDTO){
+        Korisnik korisnik = korisnikService.prijava(korisnikPrijavaDTO);
+
+        if(korisnik==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else{
+            KorisnikDTO korisnikDTO = new KorisnikDTO(korisnik.getId(), korisnik.getKorisnickoIme(), korisnik.getLozinka(), korisnik.getIme(), korisnik.getPrezime(), korisnik.getKontaktTelefon(), korisnik.getEmailAdresa(), korisnik.getDatumRodjenja(), korisnik.getUloga(), korisnik.isAktivan());
+
+            return new ResponseEntity<>(korisnikDTO, HttpStatus.CREATED);
+        }
+    }
 
     //brisanje
     @DeleteMapping(value = "/{id}")
@@ -113,7 +163,5 @@ public class KorisnikController {
         // Vraćamo odgovor 204 NO_CONTENT koji signalizira uspešno brisanje
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-
 
 }

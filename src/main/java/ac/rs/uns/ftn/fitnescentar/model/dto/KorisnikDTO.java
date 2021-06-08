@@ -27,11 +27,7 @@ public class KorisnikDTO {
         this.emailAdresa = emailAdresa;
         this.datumRodjenja = datumRodjenja;
         this.uloga = uloga;
-        if(uloga==Uloge.TRENER){
-            this.aktivan=false;
-        }else{
-            this.aktivan=true;
-        }
+        this.aktivan = aktivan;
     }
 
     public Long getId() {

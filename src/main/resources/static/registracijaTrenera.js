@@ -1,4 +1,4 @@
-$("#signup_btn").on("click", function(event){
+$("#coachRegistration").on("click", function(event){
     event.preventDefault();
 
     let ime = $("#ime_reg").val();
@@ -20,7 +20,6 @@ $("#signup_btn").on("click", function(event){
         datumRodjenja,
         uloga: "TRENER"
     }
-    console.log(newKorisnik)
     $.ajax({
         type: "POST",
         url: "http://localhost:8090/api/korisnici/registracija",

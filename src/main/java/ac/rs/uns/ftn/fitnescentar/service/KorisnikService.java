@@ -1,6 +1,7 @@
 package ac.rs.uns.ftn.fitnescentar.service;
 
 import ac.rs.uns.ftn.fitnescentar.model.Korisnik;
+import ac.rs.uns.ftn.fitnescentar.model.dto.KorisnikPrijavaDTO;
 
 import java.util.List;
 
@@ -10,7 +11,9 @@ public interface KorisnikService {
 
     List<Korisnik> findAll();
 
-    //Korisnik prijava(Korisnik korisnik);
+    Korisnik prijava(KorisnikPrijavaDTO korisnikPrijavaDTO);
+
+    Korisnik update(Korisnik korisnik) throws Exception;
 
     Korisnik create(Korisnik korisnik) throws Exception;
 

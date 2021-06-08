@@ -9,16 +9,18 @@ public class TerminTrDTO {
     private int brojPrijavljenihClanova;
     private Time vreme;
     private double cena;
+    private String opis;
     private String sala;
 
     public TerminTrDTO() {}
 
-    public TerminTrDTO(Long id, String naziv, int brojPrijavljenihClanova, Time vreme, double cena, String sala) {
+    public TerminTrDTO(Long id, String naziv, int brojPrijavljenihClanova, Time vreme, double cena, String opis, String sala) {
         this.id = id;
         this.brojPrijavljenihClanova = brojPrijavljenihClanova;
         this.vreme = vreme;
         this.cena = cena;
         this.naziv = naziv;
+        this.opis = opis;
         this.sala = sala;
     }
 
@@ -60,6 +62,14 @@ public class TerminTrDTO {
 
     public void setNaziv(String naziv) {
         this.naziv = naziv;
+    }
+
+    public String getOpis() {
+        return opis;
+    }
+
+    public void setOpis(String opis) {
+        this.opis = opis;
     }
 
     public String getSala() {

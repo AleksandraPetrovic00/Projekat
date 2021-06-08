@@ -68,3 +68,22 @@ h3{
     padding: 10px 40px;
     border: 3px solid #ADFF2F;
 }
+
+#potvrdi{
+    width: 20%;
+    position: absolute;
+    background: none;
+    border: 2px solid #ADFF2F;
+    color: white;
+    padding: 8px;
+    font-size: 35px;
+    top: 10%;
+    right: 2%;
+    cursor: pointer;
+
+}
+
+#potvrdi:hover{
+    background-color: #ADFF2F;
+    color: black;
+}
