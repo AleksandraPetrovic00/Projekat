@@ -5,16 +5,20 @@ import ac.rs.uns.ftn.fitnescentar.model.TipTreninga;
 import ac.rs.uns.ftn.fitnescentar.model.dto.TerminTrDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface TerminRepository extends JpaRepository<Termin, Long> {
 
     List<Termin> findAll();
 
+    List<Termin> findAllByOrderById();
+
     List<Termin> findAllByTreningterminNazivContaining(String naziv);
 
-    List<Termin> findAllByTreningterminTipTreningaContaining(TipTreninga tipTreninga);
+    List<Termin> findAllByTreningterminTipTreninga(TipTreninga tipTreninga);
 
     List<Termin> findAllByTreningterminOpisContaining(String opis);
 
@@ -26,9 +30,9 @@ public interface TerminRepository extends JpaRepository<Termin, Long> {
 
     List<Termin> findAllByOrderByVremeDesc();
 
-    List<Termin> findByVremeAfterOrderByVremeAsc(Time vreme);
+    List<Termin> findByVremeLessThanEqual(Date vreme);
 
-    List<Termin> findByCenaLessThanEqualOrderByVremeAsc(double cena);
+    List<Termin> findByCenaLessThanEqual(double cena);
 
     List<Termin> findByCenaLessThanEqualAndTreningterminNazivContaining(double cena, String naziv);
 

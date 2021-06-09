@@ -2,15 +2,17 @@ package ac.rs.uns.ftn.fitnescentar.model.dto;
 
 import ac.rs.uns.ftn.fitnescentar.model.TipTreninga;
 
+import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 
 public class TerminTrDTO {
 
     private Long id;
     private String naziv;
     private TipTreninga tipTreninga;
-    private String Opis;
-    private Time vreme;
+    private String opis;
+    private Date vreme;
     private String oznakaSale;
     private int trajanje;
     private double cena;
@@ -18,11 +20,11 @@ public class TerminTrDTO {
 
     public TerminTrDTO() {}
 
-    public TerminTrDTO(Long id, String naziv, TipTreninga tipTreninga, String opis, Time vreme, String oznakaSale, int trajanje, double cena, int brojPrijavljenihClanova) {
+    public TerminTrDTO(Long id, String naziv, TipTreninga tipTreninga, String opis, Date vreme, String oznakaSale, int trajanje, double cena, int brojPrijavljenihClanova) {
         this.id = id;
         this.naziv = naziv;
         this.tipTreninga = tipTreninga;
-        Opis = opis;
+        this.opis = opis;
         this.vreme = vreme;
         this.oznakaSale = oznakaSale;
         this.trajanje = trajanje;
@@ -55,18 +57,18 @@ public class TerminTrDTO {
     }
 
     public String getOpis() {
-        return Opis;
+        return opis;
     }
 
     public void setOpis(String opis) {
-        Opis = opis;
+        this.opis = opis;
     }
 
-    public Time getVreme() {
+    public Date getVreme() {
         return vreme;
     }
 
-    public void setVreme(Time vreme) {
+    public void setVreme(Date vreme) {
         this.vreme = vreme;
     }
 

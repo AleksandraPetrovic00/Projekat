@@ -7,7 +7,9 @@ import ac.rs.uns.ftn.fitnescentar.service.TerminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -37,7 +39,7 @@ public class TerminServiceImpl implements TerminService {
 
     @Override
     public List<Termin> pronadjiPoTipuTreninga(TipTreninga tipTreninga){
-        List<Termin> termini = this.terminRepository.findAllByTreningterminTipTreningaContaining(tipTreninga);
+        List<Termin> termini = this.terminRepository.findAllByTreningterminTipTreninga(tipTreninga);
 
         return  termini;
     }
@@ -82,14 +84,14 @@ public class TerminServiceImpl implements TerminService {
 
     @Override
     public List<Termin> pronadjiPoCeni(double cena){
-        List<Termin> termini = this.terminRepository.findByCenaLessThanEqualOrderByVremeAsc(cena);
+        List<Termin> termini = this.terminRepository.findByCenaLessThanEqual(cena);
 
         return termini;
     }
 
     @Override
-    public List<Termin> pronadjiPoVremenuPosle(Time vreme){
-        List<Termin> termini = this.terminRepository.findByVremeAfterOrderByVremeAsc(vreme);
+    public List<Termin> pronadjiPoVremenuPosle(Date vreme){
+        List<Termin> termini = this.terminRepository.findByVremeLessThanEqual(vreme);
 
         return termini;
     }
@@ -100,6 +102,14 @@ public class TerminServiceImpl implements TerminService {
 
         return termini;
     }
+
+    @Override
+    public List<Termin> sviPoID(){
+        List<Termin> termini = this.terminRepository.findAllByOrderById();
+
+        return termini;
+    }
+
 
 
 }

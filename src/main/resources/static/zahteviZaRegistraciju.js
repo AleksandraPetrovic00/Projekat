@@ -17,7 +17,7 @@ $(document).ready(function() {
                 row+= "<td>" + korisnik.kontaktTelefon + "</td>";
                 row+= "<td>" + korisnik.emailAdresa + "</td>";
                 row+= "<td>" + korisnik.datumRodjenja + "</td>";
-                row+="<td><input type='checkbox' data-id='"+korisnik.id+"'/></td>"
+                row+="<td><input type='checkbox' data='"+korisnik.id+"'/></td>"
                 row+="</tr>";
 
                 $('.content-table').append(row);
@@ -33,7 +33,7 @@ $("#potvrdi").on("click", function(event){
     $("[type='checkbox']").each(function(elem){
         console.log(this)
         if($(this).is(":checked")){
-            ids.push($(this).attr("data-id"));
+            ids.push($(this).attr("data"));
             window.location.href="odobravanjeZahtevaTrenera.html"
         }
     })

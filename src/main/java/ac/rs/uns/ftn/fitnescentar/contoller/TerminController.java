@@ -10,11 +10,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/termini", produces = MediaType.APPLICATION_JSON_VALUE)
 public class TerminController {
 
@@ -102,7 +105,7 @@ public class TerminController {
     }
 
     @GetMapping(value = "/vreme/{vreme}")
-    public ResponseEntity<List<TerminTrDTO>> getTerminiPoVremenuPosle(@PathVariable("vreme") Time vreme){
+    public ResponseEntity<List<TerminTrDTO>> getTerminiPoVremenuPosle(@PathVariable("vreme")Date vreme){
 
         List<Termin> termins = this.terminService.pronadjiPoVremenuPosle(vreme);
 
@@ -181,6 +184,22 @@ public class TerminController {
     public  ResponseEntity<List<TerminTrDTO>> getTerminiPoCeniINazivu(@RequestParam double cena,@RequestParam String naziv){
 
         List<Termin> termins = this.terminService.pronadjiPoCeniINazivu(cena, naziv);
+
+        List<TerminTrDTO> terminTrDTOS = new ArrayList<>();
+
+        for(Termin termin : termins) {
+            TerminTrDTO terminTrDTO = new TerminTrDTO(termin.getId(), termin.getTreningtermin().getNaziv(), termin.getTreningtermin().getTipTreninga(), termin.getTreningtermin().getOpis(), termin.getVreme(), termin.getSala_termin().getOznakaSale(), termin.getTreningtermin().getTrajanje(), termin.getCena(), termin.getBrojPrijavljenihClanova());
+
+            terminTrDTOS.add(terminTrDTO);
+        }
+
+        return new ResponseEntity<>(terminTrDTOS, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/sortiranje")
+    public  ResponseEntity<List<TerminTrDTO>> getTerminiSortiraj(){
+
+        List<Termin> termins = this.terminService.sviPoID();
 
         List<TerminTrDTO> terminTrDTOS = new ArrayList<>();
 

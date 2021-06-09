@@ -4,12 +4,16 @@ import ac.rs.uns.ftn.fitnescentar.model.Termin;
 import ac.rs.uns.ftn.fitnescentar.model.TipTreninga;
 import ac.rs.uns.ftn.fitnescentar.model.dto.TerminTrDTO;
 
+import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface TerminService {
 
     List<Termin> sviTreninzi();
+
+    List<Termin> sviPoID();
 
     List<Termin> sviPoCeniRastce();
 
@@ -27,7 +31,7 @@ public interface TerminService {
 
     List<Termin> pronadjiPoCeni(double cena);
 
-    List<Termin> pronadjiPoVremenuPosle(Time vreme);
+    List<Termin> pronadjiPoVremenuPosle(Date vreme);
 
     List<Termin> pronadjiPoCeniINazivu(double cena, String naziv);
 
