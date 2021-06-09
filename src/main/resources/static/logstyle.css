@@ -42,6 +42,10 @@ ul li a:hover{
     padding: 10px 40px;
     margin-right: 1360px;
     display: inline-block;
+    color: white;
+}
+
+.h ul li a:hover{
     background-color: white;
     color: black;
 }

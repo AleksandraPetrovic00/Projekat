@@ -68,3 +68,67 @@ h3{
     padding: 10px 40px;
     border: 3px solid #ADFF2F;
 }
+
+#home{
+    float: left;
+    left: 1.75%;
+    top: 15px;
+    position: absolute;
+    text-decoration: none;
+    color: white;
+    padding: 10px 40px;
+    border: 1px solid white;
+}
+
+#home:hover{
+    background-color: white;
+    color: black;
+}
+
+#coach{
+    float: right;
+    right: 1.6%;
+    top: 15px;
+    position: absolute;
+    text-decoration: none;
+    color: white;
+    padding: 10px 40px;
+    border: 1px solid white;
+}
+
+#signUp{
+    float: right;
+    right: 20%;
+    top: 15px;
+    position: absolute;
+    text-decoration: none;
+    color: white;
+    padding: 10px 40px;
+    border: 1px solid white;
+}
+
+#logIn{
+    float: right;
+    left: 12%;
+    top: 15px;
+    position: absolute;
+    text-decoration: none;
+    color: white;
+    padding: 10px 40px;
+    border: 1px solid white;
+}
+
+#logIn:hover{
+    background-color: white;
+    color: black;
+}
+
+#signUp:hover{
+    background-color: white;
+    color: black;
+}
+
+#coach:hover{
+    background-color: white;
+    color: black;
+}

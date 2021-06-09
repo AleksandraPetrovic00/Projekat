@@ -137,6 +137,22 @@ h2{
     color: black;
 }
 
+#logIn{
+    float: right;
+    left: 12%;
+    top: 15px;
+    position: absolute;
+    text-decoration: none;
+    color: white;
+    padding: 10px 40px;
+    border: 1px solid white;
+}
+
+#logIn:hover{
+    background-color: white;
+    color: black;
+}
+
 h3{
     position: absolute;
     bottom: 15px;

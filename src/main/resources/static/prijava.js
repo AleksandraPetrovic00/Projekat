@@ -19,7 +19,7 @@
             console.log(response);
 
             alert("Korisnik" +response.id + "je ulogovan");
-            //window.location.href = "home.html";
+            window.location.href = "home.html";
         },
         error:function(e){
             alert("Greska prilikom prijave");
