@@ -1,6 +1,7 @@
 package ac.rs.uns.ftn.fitnescentar.service.impl;
 
 import ac.rs.uns.ftn.fitnescentar.model.Termin;
+import ac.rs.uns.ftn.fitnescentar.model.TipTreninga;
 import ac.rs.uns.ftn.fitnescentar.repository.TerminRepository;
 import ac.rs.uns.ftn.fitnescentar.service.TerminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,37 @@ public class TerminServiceImpl implements TerminService {
     public TerminServiceImpl(TerminRepository terminRepository){
         this.terminRepository = terminRepository;
     }
+
+    @Override
+    public List<Termin> findAll(){
+        List<Termin> termini = this.terminRepository.findAll();
+
+        return termini;
+    }
+
+    @Override
+    public List<Termin> pronadjiPoNazivu(String naziv){
+        List<Termin> termini = this.terminRepository.findAllByTreningterminNazivContaining(naziv);
+
+        return termini;
+    }
+
+    @Override
+    public List<Termin> pronadjiPoTipuTreninga(TipTreninga tipTreninga){
+        List<Termin> termini = this.terminRepository.findAllByTreningterminTipTreningaContaining(tipTreninga);
+
+        return  termini;
+    }
+
+    @Override
+    public List<Termin> pronadjiPoOpisu(String opis){
+        List<Termin> termini = this.terminRepository.findAllByTreningterminOpisContaining(opis);
+
+        return termini;
+    }
+
+
+
 
     @Override
     public List<Termin> sviPoCeniRastce(){
