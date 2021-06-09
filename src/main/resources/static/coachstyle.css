@@ -94,17 +94,6 @@ h2{
 
 }
 
-#home{
-    float: left;
-    left: 1.75%;
-    top: 15px;
-    position: absolute;
-    text-decoration: none;
-    color: white;
-    padding: 10px 40px;
-    border: 1px solid white;
-}
-
 #coach{
     float: right;
     right: 1.6%;
@@ -112,7 +101,18 @@ h2{
     position: absolute;
     text-decoration: none;
     color: black;
+    padding: 10px 40px;
+    border: 1px solid white;
     background-color: white;
+}
+
+#home{
+    float: left;
+    left: 1.75%;
+    top: 15px;
+    position: absolute;
+    text-decoration: none;
+    color: white;
     padding: 10px 40px;
     border: 1px solid white;
 }

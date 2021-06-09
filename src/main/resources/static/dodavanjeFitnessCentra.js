@@ -22,7 +22,7 @@ $(document).on("submit", "#fcentar",function(event){
             console.log(response);
 
             alert("Centar" +response.id + "je dodat");
-           window.location.href = "login.html";
+           window.location.href = "fitnesCentri.html";
 
         },
         error:function(e){

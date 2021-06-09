@@ -57,6 +57,11 @@ body{
     border-bottom: 2px solid #ADFF2F;
 }
 
+#table{
+    position: absolute;
+    right: 25%;
+}
+
 h3{
     position: absolute;
     bottom: 15px;
@@ -67,4 +72,177 @@ h3{
     background-color: none;
     padding: 10px 40px;
     border: 3px solid #ADFF2F;
+}
+
+#sortiranje{
+    position: absolute;
+    top: 20%;
+    right: 2%;
+    background: none;
+    border: 2px solid #ADFF2F;
+    color: white;
+    padding: 10px 40px;
+    font-size: 18px;
+    margin-top: 18px;
+    cursor: pointer;
+}
+
+#naziv{
+    position: absolute;
+    top: 30%;
+    right: 2%;
+    background: none;
+    border: 2px solid #ADFF2F;
+    color: white;
+    padding: 10px 40px;
+    font-size: 18px;
+    margin-top: 18px;
+}
+
+#opis{
+    position: absolute;
+    top: 38%;
+    right: 2%;
+    background: none;
+    border: 2px solid #ADFF2F;
+    color: white;
+    padding: 10px 40px;
+    font-size: 18px;
+    margin-top: 18px;
+}
+
+#cena{
+    position: absolute;
+    top: 46%;
+    right: 2%;
+    background: none;
+    border: 2px solid #ADFF2F;
+    color: white;
+    padding: 10px 40px;
+    font-size: 18px;
+    margin-top: 18px;
+}
+
+#vreme{
+    position: absolute;
+    top: 54%;
+    right: 2%;
+    background: none;
+    border: 2px solid #ADFF2F;
+    color: white;
+    padding: 10px 63px;
+    font-size: 18px;
+    margin-top: 18px;
+}
+
+#tipovi{
+    position: absolute;
+    top: 63%;
+    right: 2%;
+    background: none;
+    border: 2px solid #ADFF2F;
+    color: white;
+    padding: 10px 100px;
+    font-size: 18px;
+    margin-top: 18px;
+    cursor: pointer;
+}
+
+#pretraga{
+    position: absolute;
+    top: 73%;
+    right: 2%;
+    background: none;
+    border: 2px solid #ADFF2F;
+    color: white;
+    padding: 10px 100px;
+    font-size: 30px;
+    margin-top: 18px;
+    cursor: pointer;
+}
+
+#pretraga:hover{
+    background-color: #ADFF2F;
+    color: black;
+}
+#sort{
+    background-color: #ADFF2F;
+    color: black;
+}
+#sort:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+#cenar{
+    background-color: #ADFF2F;
+    color: black;
+}
+#cenar:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+#cenao{
+    background-color: #ADFF2F;
+    color: black;
+}
+#cenao:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+#vremer{
+    background-color: #ADFF2F;
+    color: black;
+}
+#vremer:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+#vremeo{
+    background-color: #ADFF2F;
+    color: black;
+}
+#vremeo:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+
+#tip{
+    background-color: #ADFF2F;
+    color: black;
+}
+#tip:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+#hiit{
+    background-color: #ADFF2F;
+    color: black;
+}
+#hiit:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+#core{
+    background-color: #ADFF2F;
+    color: black;
+}
+#core:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+#yoga{
+    background-color: #ADFF2F;
+    color: black;
+}
+#yoga:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+#cardio{
+    background-color: #ADFF2F;
+    color: black;
+}
+#cardio:hover{
+    background-color: white;
+    color: #ADFF2F;
 }

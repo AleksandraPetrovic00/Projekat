@@ -66,7 +66,7 @@ public class KorisnikServiceImpl implements KorisnikService {
     public Korisnik prijava(KorisnikPrijavaDTO korisnikPrijavaDTO){
 
         Korisnik korisnik = korisnikRepository.findByKorisnickoIme(korisnikPrijavaDTO.getKorisnickoIme());
-        if(korisnik==null || !korisnik.getLozinka().equals(korisnikPrijavaDTO.getLozinka())){
+        if(korisnik==null || !korisnik.getLozinka().equals(korisnikPrijavaDTO.getLozinka()) || korisnik.isAktivan()==false){
             return null;
         }else{
             return korisnik;

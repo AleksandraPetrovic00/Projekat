@@ -22,7 +22,7 @@
             //window.location.href = "home.html";
         },
         error:function(e){
-            alert("Greska prilikom registracije");
+            alert("Greska prilikom prijave");
         }
 
 
