@@ -27,7 +27,7 @@ public class TerminController {
 
     @GetMapping(value = "/svitreninzi")
     public ResponseEntity<List<TerminTrDTO>> getSviTreninzi(){
-        List<Termin> termini = this.terminService.findAll();
+        List<Termin> termini = this.terminService.sviTreninzi();
 
         List<TerminTrDTO> terminTrDTOS = new ArrayList<>();
 
@@ -54,8 +54,8 @@ public class TerminController {
         return new ResponseEntity<>(terminTrDTOS, HttpStatus.OK);
     }
 
-    @GetMapping(value="/tip/{tipTreninga}")
-    public ResponseEntity<List<TerminTrDTO>> getTreninziByTipTreninga(@PathVariable("tipTreninga") TipTreninga tipTreninga) {
+    @GetMapping(value="/tip")
+    public ResponseEntity<List<TerminTrDTO>> getTreninziByTipTreninga(@RequestParam TipTreninga tipTreninga) {
         List<Termin> termini = this.terminService.pronadjiPoTipuTreninga(tipTreninga);
 
         List<TerminTrDTO> terminTrDTOS = new ArrayList<>();

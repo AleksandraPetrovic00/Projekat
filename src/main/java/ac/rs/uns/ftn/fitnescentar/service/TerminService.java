@@ -2,13 +2,14 @@ package ac.rs.uns.ftn.fitnescentar.service;
 
 import ac.rs.uns.ftn.fitnescentar.model.Termin;
 import ac.rs.uns.ftn.fitnescentar.model.TipTreninga;
+import ac.rs.uns.ftn.fitnescentar.model.dto.TerminTrDTO;
 
 import java.sql.Time;
 import java.util.List;
 
 public interface TerminService {
 
-    List<Termin> findAll();
+    List<Termin> sviTreninzi();
 
     List<Termin> sviPoCeniRastce();
 

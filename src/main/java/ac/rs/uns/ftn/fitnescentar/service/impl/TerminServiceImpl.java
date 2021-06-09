@@ -22,7 +22,7 @@ public class TerminServiceImpl implements TerminService {
     }
 
     @Override
-    public List<Termin> findAll(){
+    public List<Termin> sviTreninzi(){
         List<Termin> termini = this.terminRepository.findAll();
 
         return termini;

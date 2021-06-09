@@ -1,5 +1,6 @@
 package ac.rs.uns.ftn.fitnescentar.service;
 
+import ac.rs.uns.ftn.fitnescentar.model.Termin;
 import ac.rs.uns.ftn.fitnescentar.model.TipTreninga;
 import ac.rs.uns.ftn.fitnescentar.model.Trening;
 
