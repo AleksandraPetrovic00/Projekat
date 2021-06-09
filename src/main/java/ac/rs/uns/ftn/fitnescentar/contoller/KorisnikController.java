@@ -51,13 +51,11 @@ public class KorisnikController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<KorisnikDTO>> getKorisnici() {
 
-        //dobijamo sve fitnes centre
         List<Korisnik> korisnici = this.korisnikService.findAll();
 
         //pravimo listu koju cemo vratiti kao odgovor na zahtev
         List<KorisnikDTO> korisnikDTOS = new ArrayList<>();
 
-        //kreiramo FitnesCentarDTO za svaki fitnes centar koji je pronasla metoda findAll() i ubacujemo ga u listu fitnes centara
         for(Korisnik korisnik : korisnici) {
             KorisnikDTO korisnikDTO =  new KorisnikDTO(korisnik.getId(), korisnik.getKorisnickoIme(), korisnik.getLozinka(), korisnik.getIme(), korisnik.getPrezime(), korisnik.getKontaktTelefon(), korisnik.getEmailAdresa(), korisnik.getDatumRodjenja(), korisnik.getUloga(), korisnik.isAktivan());
             korisnikDTOS.add(korisnikDTO);

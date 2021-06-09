@@ -1,4 +1,4 @@
-$(document).on("submit", ".add_centar" ,function(event){
+$(document).on("submit", "#fcentar",function(event){
     event.preventDefault();
 
     let naziv = $("#naziv").val();
@@ -12,7 +12,6 @@ $(document).on("submit", ".add_centar" ,function(event){
         brojTelefonaCentrale,
         email
     }
-    console.log(newKorisnik)
     $.ajax({
         type: "POST",
         url: "http://localhost:8090/api/fitnesCentri/dodaj",
@@ -29,7 +28,6 @@ $(document).on("submit", ".add_centar" ,function(event){
         error:function(e){
             alert("Greska prilikom dodavanja");
         }
-
 
     });
 

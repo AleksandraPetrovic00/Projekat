@@ -1,27 +1,33 @@
 package ac.rs.uns.ftn.fitnescentar.model.dto;
 
+import ac.rs.uns.ftn.fitnescentar.model.TipTreninga;
+
 import java.sql.Time;
 
 public class TerminTrDTO {
 
     private Long id;
     private String naziv;
-    private int brojPrijavljenihClanova;
+    private TipTreninga tipTreninga;
+    private String Opis;
     private Time vreme;
+    private String oznakaSale;
+    private int trajanje;
     private double cena;
-    private String opis;
-    private String sala;
+    private int brojPrijavljenihClanova;
 
     public TerminTrDTO() {}
 
-    public TerminTrDTO(Long id, String naziv, int brojPrijavljenihClanova, Time vreme, double cena, String opis, String sala) {
+    public TerminTrDTO(Long id, String naziv, TipTreninga tipTreninga, String opis, Time vreme, String oznakaSale, int trajanje, double cena, int brojPrijavljenihClanova) {
         this.id = id;
-        this.brojPrijavljenihClanova = brojPrijavljenihClanova;
-        this.vreme = vreme;
-        this.cena = cena;
         this.naziv = naziv;
-        this.opis = opis;
-        this.sala = sala;
+        this.tipTreninga = tipTreninga;
+        Opis = opis;
+        this.vreme = vreme;
+        this.oznakaSale = oznakaSale;
+        this.trajanje = trajanje;
+        this.cena = cena;
+        this.brojPrijavljenihClanova = brojPrijavljenihClanova;
     }
 
     public Long getId() {
@@ -32,12 +38,28 @@ public class TerminTrDTO {
         this.id = id;
     }
 
-    public int getBrojPrijavljenihClanova() {
-        return brojPrijavljenihClanova;
+    public String getNaziv() {
+        return naziv;
     }
 
-    public void setBrojPrijavljenihClanova(int brojPrijavljenihClanova) {
-        this.brojPrijavljenihClanova = brojPrijavljenihClanova;
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
+    }
+
+    public TipTreninga getTipTreninga() {
+        return tipTreninga;
+    }
+
+    public void setTipTreninga(TipTreninga tipTreninga) {
+        this.tipTreninga = tipTreninga;
+    }
+
+    public String getOpis() {
+        return Opis;
+    }
+
+    public void setOpis(String opis) {
+        Opis = opis;
     }
 
     public Time getVreme() {
@@ -48,6 +70,22 @@ public class TerminTrDTO {
         this.vreme = vreme;
     }
 
+    public String getOznakaSale() {
+        return oznakaSale;
+    }
+
+    public void setOznakaSale(String oznakaSale) {
+        this.oznakaSale = oznakaSale;
+    }
+
+    public int getTrajanje() {
+        return trajanje;
+    }
+
+    public void setTrajanje(int trajanje) {
+        this.trajanje = trajanje;
+    }
+
     public double getCena() {
         return cena;
     }
@@ -56,27 +94,11 @@ public class TerminTrDTO {
         this.cena = cena;
     }
 
-    public String getNaziv() {
-        return naziv;
+    public int getBrojPrijavljenihClanova() {
+        return brojPrijavljenihClanova;
     }
 
-    public void setNaziv(String naziv) {
-        this.naziv = naziv;
-    }
-
-    public String getOpis() {
-        return opis;
-    }
-
-    public void setOpis(String opis) {
-        this.opis = opis;
-    }
-
-    public String getSala() {
-        return sala;
-    }
-
-    public void setSala(String sala) {
-        this.sala = sala;
+    public void setBrojPrijavljenihClanova(int brojPrijavljenihClanova) {
+        this.brojPrijavljenihClanova = brojPrijavljenihClanova;
     }
 }
