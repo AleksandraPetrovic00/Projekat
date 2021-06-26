@@ -1,6 +1,5 @@
 package ac.rs.uns.ftn.fitnescentar.service.impl;
 
-import ac.rs.uns.ftn.fitnescentar.model.FitnesCentar;
 import ac.rs.uns.ftn.fitnescentar.model.Korisnik;
 import ac.rs.uns.ftn.fitnescentar.model.dto.KorisnikPrijavaDTO;
 import ac.rs.uns.ftn.fitnescentar.repository.KorisnikRepository;
