@@ -1,0 +1,312 @@
+*{
+    margin:0;
+    padding:0;
+    font-family:'Times New Roman', Times, serif;
+}
+
+body{
+    background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),  url(../images/login.png);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.title{
+    position: absolute;
+    float: left;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color:#9ae42a;
+    font-size: 50px;
+    border-bottom: 1px solid #ADFF2F
+}
+
+.content-table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 20px;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.content-table thead tr{
+    background-color: rgb(134, 197, 40);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.content-table th, .content-table td{
+    padding: 12px 15px;
+    color: white;
+    text-align: center;
+}
+
+.content-table tbody tr{
+    border-bottom: 1px solid grey;
+}
+
+.content-table tbody tr:last-of-type{
+    border-bottom: 2px solid #ADFF2F;
+}
+
+#table{
+    position: absolute;
+    right: 25%;
+}
+
+h3{
+    position: absolute;
+    bottom: 15px;
+    left: 2%;
+    text-align: center;
+    color: #ADFF2F;
+    display: inline-block;
+    background-color: none;
+    padding: 10px 40px;
+    border: 3px solid #ADFF2F;
+}
+
+#sortiranje{
+    position: absolute;
+    top: 20%;
+    right: 2%;
+    background: none;
+    border: 2px solid #ADFF2F;
+    color: white;
+    padding: 10px 40px;
+    font-size: 18px;
+    margin-top: 18px;
+    cursor: pointer;
+}
+
+#naziv{
+    position: absolute;
+    top: 30%;
+    right: 2%;
+    background: none;
+    border: 2px solid #ADFF2F;
+    color: white;
+    padding: 10px 40px;
+    font-size: 18px;
+    margin-top: 18px;
+}
+
+#opis{
+    position: absolute;
+    top: 38%;
+    right: 2%;
+    background: none;
+    border: 2px solid #ADFF2F;
+    color: white;
+    padding: 10px 40px;
+    font-size: 18px;
+    margin-top: 18px;
+}
+
+#cena{
+    position: absolute;
+    top: 46%;
+    right: 2%;
+    background: none;
+    border: 2px solid #ADFF2F;
+    color: white;
+    padding: 10px 40px;
+    font-size: 18px;
+    margin-top: 18px;
+}
+
+#vreme{
+    position: absolute;
+    top: 54%;
+    right: 2%;
+    background: none;
+    border: 2px solid #ADFF2F;
+    color: white;
+    padding: 10px 63px;
+    font-size: 18px;
+    margin-top: 18px;
+}
+
+#tipovi{
+    position: absolute;
+    top: 63%;
+    right: 2%;
+    background: none;
+    border: 2px solid #ADFF2F;
+    color: white;
+    padding: 10px 100px;
+    font-size: 18px;
+    margin-top: 18px;
+    cursor: pointer;
+}
+
+#pretraga{
+    position: absolute;
+    top: 73%;
+    right: 2%;
+    background: none;
+    border: 2px solid #ADFF2F;
+    color: white;
+    padding: 10px 100px;
+    font-size: 30px;
+    margin-top: 18px;
+    cursor: pointer;
+}
+
+#pretraga:hover{
+    background-color: #ADFF2F;
+    color: black;
+}
+#sort{
+    background-color: #ADFF2F;
+    color: black;
+}
+#sort:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+#cenar{
+    background-color: #ADFF2F;
+    color: black;
+}
+#cenar:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+#cenao{
+    background-color: #ADFF2F;
+    color: black;
+}
+#cenao:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+#vremer{
+    background-color: #ADFF2F;
+    color: black;
+}
+#vremer:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+#vremeo{
+    background-color: #ADFF2F;
+    color: black;
+}
+#vremeo:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+
+#tip{
+    background-color: #ADFF2F;
+    color: black;
+}
+#tip:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+#hiit{
+    background-color: #ADFF2F;
+    color: black;
+}
+#hiit:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+#core{
+    background-color: #ADFF2F;
+    color: black;
+}
+#core:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+#yoga{
+    background-color: #ADFF2F;
+    color: black;
+}
+#yoga:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+#cardio{
+    background-color: #ADFF2F;
+    color: black;
+}
+#cardio:hover{
+    background-color: white;
+    color: #ADFF2F;
+}
+
+#home{
+    float: left;
+    left: 1.75%;
+    top: 15px;
+    position: absolute;
+    text-decoration: none;
+    color: white;
+    padding: 10px 40px;
+    border: 1px solid white;
+}
+
+#home:hover{
+    background-color: white;
+    color: black;
+}
+
+#coach{
+    float: right;
+    right: 1.6%;
+    top: 15px;
+    position: absolute;
+    text-decoration: none;
+    color: white;
+    padding: 10px 40px;
+    border: 1px solid white;
+}
+
+#signUp{
+    float: right;
+    right: 20%;
+    top: 15px;
+    position: absolute;
+    text-decoration: none;
+    color: white;
+    padding: 10px 40px;
+    border: 1px solid white;
+}
+
+#logIn{
+    float: right;
+    left: 12%;
+    top: 15px;
+    position: absolute;
+    text-decoration: none;
+    color: white;
+    padding: 10px 40px;
+    border: 1px solid white;
+}
+
+#logIn:hover{
+    background-color: white;
+    color: black;
+}
+
+#signUp:hover{
+    background-color: white;
+    color: black;
+}
+
+#coach:hover{
+    background-color: white;
+    color: black;
+}
