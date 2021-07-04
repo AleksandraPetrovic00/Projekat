@@ -8,8 +8,7 @@ public class FitnesCentarDTO {
     private int brojTelefonaCentrale;
     private String email;
 
-    public FitnesCentarDTO() {
-    }
+    public FitnesCentarDTO() {}
 
     public FitnesCentarDTO(Long id, String naziv, String adresa, int brojTelefonaCentrale, String email) {
         this.id=id;

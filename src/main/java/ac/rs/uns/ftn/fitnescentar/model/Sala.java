@@ -14,7 +14,7 @@ public class Sala implements Serializable {
     @Column(nullable = false)
     private int kapacitet;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String oznakaSale;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -23,6 +23,13 @@ public class Sala implements Serializable {
     //terminska lista
     @OneToMany(mappedBy = "sala_termin", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Termin> terminiSala = new HashSet<>();
+
+    public Sala(int kapacitet, String oznakaSale) {
+        this.kapacitet=kapacitet;
+        this.oznakaSale=oznakaSale;
+    }
+
+    public Sala() {}
 
     public Long getId() {
         return id;
@@ -46,5 +53,21 @@ public class Sala implements Serializable {
 
     public void setOznakaSale(String oznakaSale) {
         this.oznakaSale = oznakaSale;
+    }
+
+    public FitnesCentar getFitnescentar_sala() {
+        return fitnescentar_sala;
+    }
+
+    public void setFitnescentar_sala(FitnesCentar fitnescentar_sala) {
+        this.fitnescentar_sala = fitnescentar_sala;
+    }
+
+    public Set<Termin> getTerminiSala() {
+        return terminiSala;
+    }
+
+    public void setTerminiSala(Set<Termin> terminiSala) {
+        this.terminiSala = terminiSala;
     }
 }

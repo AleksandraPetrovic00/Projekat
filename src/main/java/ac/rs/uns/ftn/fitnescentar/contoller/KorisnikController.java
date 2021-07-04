@@ -88,6 +88,30 @@ public class KorisnikController {
         return new ResponseEntity<>(korisnikDTOS, HttpStatus.OK);
     }
 
+    //treneri
+    @GetMapping(value = "/treneri", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<KorisnikDTO>> getTreneri() {
+
+        //dobijamo sve fitnes centre
+        List<Korisnik> korisnici = this.korisnikService.findAll();
+
+        //pravimo listu koju cemo vratiti kao odgovor na zahtev
+        List<KorisnikDTO> korisnikDTOS = new ArrayList<>();
+
+        //kreiramo FitnesCentarDTO za svaki fitnes centar koji je pronasla metoda findAll() i ubacujemo ga u listu fitnes centara
+        for(Korisnik korisnik : korisnici) {
+            if(korisnik.getUloga()== Uloge.TRENER) {
+                KorisnikDTO korisnikDTO = new KorisnikDTO(korisnik.getId(), korisnik.getKorisnickoIme(), korisnik.getLozinka(), korisnik.getIme(), korisnik.getPrezime(), korisnik.getKontaktTelefon(), korisnik.getEmailAdresa(), korisnik.getDatumRodjenja(), korisnik.getUloga(), korisnik.isAktivan());
+                korisnikDTOS.add(korisnikDTO);
+            }
+            else{
+                continue;
+            }
+        }
+
+        return new ResponseEntity<>(korisnikDTOS, HttpStatus.OK);
+    }
+
     //azuriranje statusa
     @PutMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -134,6 +158,21 @@ public class KorisnikController {
         Korisnik newKorisnik = korisnikService.create(korisnik);
 
             KorisnikDTO newKorisnikDTO = new KorisnikDTO(newKorisnik.getId(), newKorisnik.getKorisnickoIme(), newKorisnik.getLozinka(), newKorisnik.getIme(), newKorisnik.getPrezime(), newKorisnik.getKontaktTelefon(), newKorisnik.getEmailAdresa(), newKorisnik.getDatumRodjenja(), newKorisnik.getUloga(), newKorisnik.isAktivan());
+
+        //201 CREATED i podaci o novom objektu
+        return new ResponseEntity<>(newKorisnikDTO, HttpStatus.CREATED);
+    }
+
+    @PostMapping(value = "/administratorskaRegistracija")
+    public ResponseEntity<KorisnikDTO> registerTrener(@RequestBody KorisnikDTO korisnikDTO) throws Exception{
+
+        Korisnik korisnik = new Korisnik(korisnikDTO.getKorisnickoIme(), korisnikDTO.getLozinka(), korisnikDTO.getIme(), korisnikDTO.getPrezime(), korisnikDTO.getKontaktTelefon(), korisnikDTO.getEmailAdresa(), korisnikDTO.getDatumRodjenja(), korisnikDTO.getUloga(), korisnikDTO.isAktivan());
+
+        korisnik.setAktivan(true);
+
+        Korisnik newKorisnik = korisnikService.create(korisnik);
+
+        KorisnikDTO newKorisnikDTO = new KorisnikDTO(newKorisnik.getId(), newKorisnik.getKorisnickoIme(), newKorisnik.getLozinka(), newKorisnik.getIme(), newKorisnik.getPrezime(), newKorisnik.getKontaktTelefon(), newKorisnik.getEmailAdresa(), newKorisnik.getDatumRodjenja(), newKorisnik.getUloga(), newKorisnik.isAktivan());
 
         //201 CREATED i podaci o novom objektu
         return new ResponseEntity<>(newKorisnikDTO, HttpStatus.CREATED);
