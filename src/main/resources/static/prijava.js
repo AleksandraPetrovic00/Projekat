@@ -22,9 +22,11 @@
             window.localStorage.setItem("Id", response.id);
             window.localStorage.setItem("Uloga", response.uloga)
             if(localStorage.getItem("Uloga")=="ADMINISTRATOR"){
-                window.location.href = "odobravanjeZahtevaTrenera.html"
+                window.location.href = "admin.html"
+            }else if(localStorage.getItem("Uloga")=="TRENER"){
+                window.location.href = "trener.html";
             }else{
-            window.location.href = "home.html";
+                window.location.href = "clan.html";
             }
         },
         error:function(e){

@@ -81,7 +81,7 @@ public class FitnesCentarController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<FitnesCentarDTO> updateFitnesCentar(@PathVariable Long id, @RequestBody FitnesCentarDTO fitnesCentarDTO) throws Exception {
 
-        // Kreiramo objekat klase Trening, tako što za vrednosti atributa uzimamo
+        // Kreiramo objekat klase FitnesCentar, tako što za vrednosti atributa uzimamo
         // vrednosti iz primljenog DTO objekta
         FitnesCentar fitnesCentar = new FitnesCentar(fitnesCentarDTO.getNaziv(), fitnesCentarDTO.getAdresa(), fitnesCentarDTO.getBrojTelefonaCentrale(), fitnesCentarDTO.getEmail());
 

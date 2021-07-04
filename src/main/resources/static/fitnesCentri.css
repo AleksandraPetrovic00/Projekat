@@ -132,3 +132,23 @@ h3{
     background-color: white;
     color: black;
 }
+
+#potvrdi{
+    width: 20%;
+    background: none;
+    border: 2px solid #ADFF2F;
+    color: white;
+    padding: 12px;
+    font-size: 21px;
+    margin-top: 18px;
+    cursor: pointer;
+    right: 10%;
+    top: 20%;
+    position: absolute;
+
+}
+
+#potvrdi:hover{
+    background-color: #ADFF2F;
+    color: black;
+}

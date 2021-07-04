@@ -1,7 +1,11 @@
 package ac.rs.uns.ftn.fitnescentar.contoller;
 
+import ac.rs.uns.ftn.fitnescentar.model.Korisnik;
+import ac.rs.uns.ftn.fitnescentar.model.Uloge;
+import ac.rs.uns.ftn.fitnescentar.model.dto.KorisnikDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class PageController {
@@ -31,8 +35,20 @@ public class PageController {
     public String login(){return "login.html";}
 
     @GetMapping(value = "odobravanjeZahtevaTrenera")
-    public String odobravannjeZahtevaTrenera(){return "odobravanjeZahtevaTrenera.html";}
+    public String odobravanjeZahtevaTrenera(@RequestBody KorisnikDTO korisnikDTO)
+    {
+        Korisnik korisnik = new Korisnik(korisnikDTO.getKorisnickoIme(), korisnikDTO.getLozinka(), korisnikDTO.getIme(), korisnikDTO.getPrezime(), korisnikDTO.getKontaktTelefon(), korisnikDTO.getEmailAdresa(), korisnikDTO.getDatumRodjenja(), korisnikDTO.getUloga(), korisnikDTO.isAktivan());
+        if(korisnik.getUloga()==Uloge.ADMINISTRATOR) {
+            return "odobravanjeZahtevaTrenera.html";
+        }
+        else{
+            return "error.html";
+        }
+    }
 
     @GetMapping(value = "listaTreninga")
     public String listaTreninga(){return "Treninzi.html";}
+
+    @GetMapping(value = "admin")
+    public String admin(){return "admin.html";}
 }

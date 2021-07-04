@@ -45,10 +45,10 @@ public class FitnesCentarServiceImpl implements FitnesCentarService {
         if (fitnesCentarToUpdate == null) {
             throw new Exception("Fitnes centar ne postoji");
         }
-        fitnesCentarToUpdate.setNaziv(fitnesCentar.getNaziv());
-        fitnesCentarToUpdate.setAdresa(fitnesCentar.getAdresa());
-        fitnesCentarToUpdate.setBrojTelefonaCentrale(fitnesCentar.getBrojTelefonaCentrale());
-        fitnesCentarToUpdate.setEmail(fitnesCentar.getEmail());
+            fitnesCentarToUpdate.setNaziv(fitnesCentar.getNaziv());
+            fitnesCentarToUpdate.setAdresa(fitnesCentar.getAdresa());
+            fitnesCentarToUpdate.setBrojTelefonaCentrale(fitnesCentar.getBrojTelefonaCentrale());
+            fitnesCentarToUpdate.setEmail(fitnesCentar.getEmail());
 
         FitnesCentar savedFitnesCentar = this.fitnesCentarRepository.save(fitnesCentarToUpdate);
         return savedFitnesCentar;

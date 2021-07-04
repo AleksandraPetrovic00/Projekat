@@ -1,5 +1,8 @@
 INSERT INTO FITNES_CENTAR (naziv, adresa, broj_telefona_centrale, email) VALUES ('The Workout Zone', 'Zlatne Grede 4', '011200300', 'twz@gmail.com');
 INSERT INTO FITNES_CENTAR (naziv, adresa, broj_telefona_centrale, email) VALUES ('Athlemotive', 'Strazilovska 12', '021255255', 'althlemotive@gmail.com');
+INSERT INTO FITNES_CENTAR (naziv, adresa, broj_telefona_centrale, email) VALUES ('NS Gym', 'Bulevar Oslobodjenja 22', '021200300', 'ns.gym@gmail.com');
+INSERT INTO FITNES_CENTAR (naziv, adresa, broj_telefona_centrale, email) VALUES ('Runnin', 'Cara Dusana 21', '021555444', 'runnin@gmail.com');
+
 
 INSERT INTO KORISNIK (korisnicko_ime, lozinka, ime, prezime, kontakt_telefon, email_adresa, datum_rodjenja, uloga, aktivan, fitnescentar_korisnik_id) VALUES ('aleksandrap', '000719', 'Aleksandra', 'Petrovic', '0658848889', 'aleksandrap1986@gmail.com', '19.07.2000.', 'ADMINISTRATOR', 'TRUE', null );
 INSERT INTO KORISNIK (korisnicko_ime, lozinka, ime, prezime, kontakt_telefon, email_adresa, datum_rodjenja, uloga, aktivan, fitnescentar_korisnik_id) VALUES ('brkicee', 'elib2r1', 'Elena', 'Brkic', '0633672330', 'brkic.elena@gmail.com', '27.08.2000.', 'CLAN', 'TRUE', null );
