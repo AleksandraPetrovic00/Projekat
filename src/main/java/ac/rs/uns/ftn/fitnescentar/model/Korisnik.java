@@ -76,7 +76,6 @@ public class Korisnik implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "termin_id", referencedColumnName = "id"))
     private Set<Termin> prijavljeniTermini = new HashSet<>();
 
-
     public Long getId() {
         return id;
     }

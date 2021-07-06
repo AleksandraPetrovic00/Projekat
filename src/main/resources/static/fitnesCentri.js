@@ -14,8 +14,9 @@ $(document).ready(function() {
                 row+= "<td>" + fitnesCentar.adresa + "</td>";
                 row+= "<td>" + fitnesCentar.brojTelefonaCentrale + "</td>";
                 row+= "<td>" + fitnesCentar.email + "</td>";
-                row+="<td><button class='izmeni' onClick=window.location.href='editFitnesCentar.html' data-id='"+fitnesCentar.id+"'  >EDIT</button></td>";
+                row+="<td><button class='izmeni' onClick=window.location.href='editFitnesCentar.html' data-id='"+fitnesCentar.id+"'>EDIT</button></td>";
                 row+= "<td><input type='checkbox' data='"+fitnesCentar.id+"'></td>"
+                row+="<td><button class='izaberi' onClick=window.location.href='sale.html' data-id='"+fitnesCentar.id+"'>SALE</button></td>";
                 row+="</tr>";
 
                 $('.content-table').append(row);
@@ -31,6 +32,14 @@ $(document).ready(function() {
         let fitnesCentarId = this.dataset.id;
         console.log(fitnesCentarId);
         localStorage.setItem("centarId", fitnesCentarId);
+    })
+
+    $(document).on('click', '.izaberi', function(){
+
+        let fcid=this.dataset.id;
+        console.log(fcid);
+        localStorage.setItem("fitnesCentarSalaId", fcid);
+
     })
 
 

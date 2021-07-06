@@ -18,7 +18,7 @@ public class Sala implements Serializable {
     private String oznakaSale;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private FitnesCentar fitnescentar_sala;
+    private FitnesCentar fitnescentarsala;
 
     //terminska lista
     @OneToMany(mappedBy = "sala_termin", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -55,12 +55,12 @@ public class Sala implements Serializable {
         this.oznakaSale = oznakaSale;
     }
 
-    public FitnesCentar getFitnescentar_sala() {
-        return fitnescentar_sala;
+    public FitnesCentar getFitnescentarsala() {
+        return fitnescentarsala;
     }
 
-    public void setFitnescentar_sala(FitnesCentar fitnescentar_sala) {
-        this.fitnescentar_sala = fitnescentar_sala;
+    public void setFitnescentarsala(FitnesCentar fitnescentarsala) {
+        this.fitnescentarsala = fitnescentarsala;
     }
 
     public Set<Termin> getTerminiSala() {

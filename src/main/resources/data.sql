@@ -16,14 +16,14 @@ INSERT INTO TRENING (naziv, opis, tip_treninga, trajanje, korisnik_trening_id) V
 INSERT INTO TRENING (naziv, opis, tip_treninga, trajanje, korisnik_trening_id) VALUES ('Gluteus&Core', 'Hard','CORE', '120', 3);
 INSERT INTO TRENING (naziv, opis, tip_treninga, trajanje, korisnik_trening_id) VALUES ('Tone Up', 'Medium','HIIT', '120', 7);
 
-INSERT INTO SALA (kapacitet, oznaka_sale, fitnescentar_sala_id) VALUES ('20', 'A1', 2);
-INSERT INTO SALA (kapacitet, oznaka_sale, fitnescentar_sala_id) VALUES ('30', 'A2', 1);
-INSERT INTO SALA (kapacitet, oznaka_sale, fitnescentar_sala_id) VALUES ('25', 'A3', 2);
+INSERT INTO SALA (kapacitet, oznaka_sale, fitnescentarsala_id) VALUES ('20', 'A1', 2);
+INSERT INTO SALA (kapacitet, oznaka_sale, fitnescentarsala_id) VALUES ('30', 'A2', 1);
+INSERT INTO SALA (kapacitet, oznaka_sale, fitnescentarsala_id) VALUES ('25', 'A3', 2);
 
 INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('10', '2021-06-01', '500', 1, 3);
-INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('12', '2021-06-02', '450', 1, 2);
-INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('8', '2021-06-01', '500', 1, 3);
-INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('15', '2021-06-03', '500', 1, 1);
+INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('12', '2021-06-02', '450', 2, 2);
+INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('8', '2021-06-01', '500', 2, 3);
+INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('15', '2021-06-03', '500', 3, 1);
 INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('12', '2021-06-01', '450', 1, 2);
 
 INSERT INTO OCENA (ocena, korisnik_ocena_id, termin_ocena_id) VALUES ('9', 2, 3);

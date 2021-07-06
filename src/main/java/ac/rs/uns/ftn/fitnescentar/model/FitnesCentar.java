@@ -23,7 +23,7 @@ public class FitnesCentar implements Serializable {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @OneToMany(mappedBy = "fitnescentar_sala", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "fitnescentarsala", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Sala> sale= new HashSet<>();
 
     @OneToMany(mappedBy = "fitnescentar_korisnik", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

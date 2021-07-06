@@ -30,6 +30,13 @@ public class SalaServiceImpl implements SalaService {
     }
 
     @Override
+    public List<Sala> pronadjiSveZaFitnesCentar(Long fitnesCentarId){
+        List<Sala> fitnesCentri = this.salaRepository.findAllByFitnescentarsalaId(fitnesCentarId);
+
+        return fitnesCentri;
+    }
+
+    @Override
     public Sala create(Sala sala) throws Exception {
         if(sala.getId() != null){
             throw new Exception("ID mora biti null!");

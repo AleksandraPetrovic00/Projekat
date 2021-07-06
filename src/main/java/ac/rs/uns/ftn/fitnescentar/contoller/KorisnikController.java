@@ -4,6 +4,7 @@ import ac.rs.uns.ftn.fitnescentar.model.Korisnik;
 import ac.rs.uns.ftn.fitnescentar.model.Uloge;
 import ac.rs.uns.ftn.fitnescentar.model.dto.KorisnikDTO;
 import ac.rs.uns.ftn.fitnescentar.model.dto.KorisnikPrijavaDTO;
+import ac.rs.uns.ftn.fitnescentar.model.dto.TrenerDTO;
 import ac.rs.uns.ftn.fitnescentar.service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -157,7 +158,7 @@ public class KorisnikController {
 
         Korisnik newKorisnik = korisnikService.create(korisnik);
 
-            KorisnikDTO newKorisnikDTO = new KorisnikDTO(newKorisnik.getId(), newKorisnik.getKorisnickoIme(), newKorisnik.getLozinka(), newKorisnik.getIme(), newKorisnik.getPrezime(), newKorisnik.getKontaktTelefon(), newKorisnik.getEmailAdresa(), newKorisnik.getDatumRodjenja(), newKorisnik.getUloga(), newKorisnik.isAktivan());
+        KorisnikDTO newKorisnikDTO = new KorisnikDTO(newKorisnik.getId(), newKorisnik.getKorisnickoIme(), newKorisnik.getLozinka(), newKorisnik.getIme(), newKorisnik.getPrezime(), newKorisnik.getKontaktTelefon(), newKorisnik.getEmailAdresa(), newKorisnik.getDatumRodjenja(), newKorisnik.getUloga(), newKorisnik.isAktivan());
 
         //201 CREATED i podaci o novom objektu
         return new ResponseEntity<>(newKorisnikDTO, HttpStatus.CREATED);

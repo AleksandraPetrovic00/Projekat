@@ -9,6 +9,8 @@ public interface SalaService {
 
     List<Sala> findAll();
 
+    List<Sala> pronadjiSveZaFitnesCentar(Long fitnesCentarId);
+
     Sala create(Sala sala) throws Exception;
 
     Sala update(Sala sala) throws Exception;
