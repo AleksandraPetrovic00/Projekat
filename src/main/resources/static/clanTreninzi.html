@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLAN - Treninzi</title>
+    <link rel="stylesheet" href="clanTreninzi.css">
+    <script
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+
+<div class="title">
+    <h1>Lista treninga</h1>
+</div>
+
+<table class="content-table" id="table">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Naziv</th>
+        <th>Tip Treninga</th>
+        <th>Opis</th>
+        <th>Vreme</th>
+        <th>Sala</th>
+        <th>Trajanje</th>
+        <th>Cena</th>
+        <th>Broj prijavljenih</th>
+        <th>Prijavi trening</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    </tbody>
+</table>
+
+<select name="sortiranje" id="sortiranje">
+    <option value="sort" id="sort">--SORTIRAJ--</option>
+    <option value="cenar" id="cenar">Cena rastuce</option>
+    <option value="cenao" id="cenao">Cena opadajuce</option>
+    <option value="vremer" id="vremer">Vreme rastuce</option>
+    <option value="vremeo" id="vremeo">Vreme opadajuce</option>
+</select>
+
+<div class="kriterijumi">
+    <input type="text" placeholder="Pretrazi po nazivu" id="naziv">
+    <input type="text" placeholder="Pretrazi po opisu" id="opis">
+    <input type="text" placeholder="Pretrazi po ceni" id="cena">
+    <input type="date" placeholder="Pretrazi po vremenu" id="vreme">
+</div>
+<select name="tipovi" id="tipovi">
+    <option value="tip" id="tip">--TIP--</option>
+    <option value="hiit" id="hiit">HIIT</option>
+    <option value="core" id="core">CORE</option>
+    <option value="yoga" id="yoga">YOGA</option>
+    <option value="cardio" id="cardio">CARDIO</option>
+</select>
+
+<button type="submit" id="pretraga">Pretrazi</button>
+
+<div class="nav">
+    <ul>
+        <li><a href="home.html" id="home">HOME</a></li>
+        <li><a href="login.html" id="logIn">LOG IN</a></li>
+        <li><a href="registracijaKorisnika.html" id="signUp">SIGN UP</a></li>
+        <li><a href="registracijaTrenera.html" id="coach">REGISTER AS A COACH</a></li>
+    </ul>
+</div>
+
+<div class="logo">
+    <h3>Fitness Centers Athlemotive</h3>
+</div>
+
+<script src="clanTreninzi.js"></script>
+
+</body>
+</html>
