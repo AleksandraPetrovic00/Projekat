@@ -1,5 +1,6 @@
 package ac.rs.uns.ftn.fitnescentar.service.impl;
 
+import ac.rs.uns.ftn.fitnescentar.model.Korisnik;
 import ac.rs.uns.ftn.fitnescentar.model.Termin;
 import ac.rs.uns.ftn.fitnescentar.model.TipTreninga;
 import ac.rs.uns.ftn.fitnescentar.repository.TerminRepository;
@@ -108,6 +109,20 @@ public class TerminServiceImpl implements TerminService {
         List<Termin> termini = this.terminRepository.findAllByOrderById();
 
         return termini;
+    }
+
+    @Override
+    public List<Termin> pronadjiPrijavljeneTreninge(Long id){
+        List<Termin> prijavljeniTermini = this.terminRepository.findAllByPrijavljeniKorisniciId(id);
+
+        return prijavljeniTermini;
+    }
+
+    @Override
+    public Termin findOne(Long id){
+        Termin termin = this.terminRepository.getOne(id);
+
+        return termin;
     }
 
 

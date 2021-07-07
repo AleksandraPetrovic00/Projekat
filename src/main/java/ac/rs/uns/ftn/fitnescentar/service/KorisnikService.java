@@ -2,6 +2,7 @@ package ac.rs.uns.ftn.fitnescentar.service;
 
 import ac.rs.uns.ftn.fitnescentar.model.Korisnik;
 import ac.rs.uns.ftn.fitnescentar.model.dto.KorisnikPrijavaDTO;
+import ac.rs.uns.ftn.fitnescentar.model.dto.TerminTrDTO;
 
 import java.util.List;
 

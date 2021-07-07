@@ -21,13 +21,13 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
     color:#9ae42a;
-    font-size: 35px;
+    font-size: 50px;
     border-bottom: 1px solid #ADFF2F
 }
 
 .content-table{
-    position: relative;
-    left: 17%;
+    position: absolute;
+    left: 15%;
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 20px;

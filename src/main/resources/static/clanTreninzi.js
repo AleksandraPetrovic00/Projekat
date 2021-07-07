@@ -18,7 +18,7 @@ $(document).ready(function() {
                 row+= "<td>" + trening.trajanje + "</td>";
                 row+= "<td>" + trening.cena + "</td>";
                 row+= "<td>" + trening.brojPrijavljenihClanova + "</td>";
-                row+="<td><button class='prijavi' onClick=window.location.href='prijavljeniTreninzi.html' data-id='"+trening.id+"'  >PRIJAVI</button></td>";
+                row+="<td><button class='prijavi' onClick=window.location.href='izabran.html' data-id='"+trening.id+"'  >IZABERI</button></td>";
                 row+="</tr>";
 
                 $('.content-table').append(row);
@@ -32,7 +32,7 @@ $(document).ready(function() {
     $(document).on('click', '.prijavi', function(){
         let treningId = this.dataset.id;
         console.log(treningId);
-        localStorage.setItem("treminId", treningId);
+        localStorage.setItem("terminId", treningId);
     })
 
     $("#pretraga").on("click", function(event){

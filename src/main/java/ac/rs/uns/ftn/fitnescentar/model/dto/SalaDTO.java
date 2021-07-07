@@ -1,9 +1,9 @@
 package ac.rs.uns.ftn.fitnescentar.model.dto;
 
 public class SalaDTO {
-    Long id;
-    int kapacitet;
-    String oznakaSale;
+    private Long id;
+    private int kapacitet;
+    private String oznakaSale;
 
     public SalaDTO() {}
 

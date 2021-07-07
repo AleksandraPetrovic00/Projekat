@@ -29,6 +29,12 @@ INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, tren
 INSERT INTO OCENA (ocena, korisnik_ocena_id, termin_ocena_id) VALUES ('9', 2, 3);
 INSERT INTO OCENA (ocena, korisnik_ocena_id, termin_ocena_id) VALUES ('10', 3, 2);
 
+INSERT INTO PRIJAVLJENI_TRENINZI(korisnik_id, termin_id) VALUES ('2', '1');
+INSERT INTO PRIJAVLJENI_TRENINZI(korisnik_id, termin_id) VALUES ('2', '2');
+
+INSERT INTO ODRADJENI_TRENINZI(korisnik_id, termin_id) VALUES ('2', '1');
+
+
 
 
 

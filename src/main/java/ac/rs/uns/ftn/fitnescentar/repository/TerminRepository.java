@@ -36,4 +36,6 @@ public interface TerminRepository extends JpaRepository<Termin, Long> {
 
     List<Termin> findByCenaLessThanEqualAndTreningterminNazivContaining(double cena, String naziv);
 
+    List<Termin> findAllByPrijavljeniKorisniciId(Long id);
+
 }

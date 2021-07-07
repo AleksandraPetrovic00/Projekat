@@ -3,6 +3,7 @@ package ac.rs.uns.ftn.fitnescentar.service.impl;
 import ac.rs.uns.ftn.fitnescentar.model.Korisnik;
 import ac.rs.uns.ftn.fitnescentar.model.dto.KorisnikPrijavaDTO;
 import ac.rs.uns.ftn.fitnescentar.repository.KorisnikRepository;
+import ac.rs.uns.ftn.fitnescentar.repository.TerminRepository;
 import ac.rs.uns.ftn.fitnescentar.service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +15,12 @@ public class KorisnikServiceImpl implements KorisnikService {
 
     private final KorisnikRepository korisnikRepository;
 
+    private final TerminRepository terminRepository;
+
     @Autowired
-    public KorisnikServiceImpl(KorisnikRepository korisnikRepository) {
+    public KorisnikServiceImpl(KorisnikRepository korisnikRepository, TerminRepository terminRepository) {
         this.korisnikRepository = korisnikRepository;
+        this.terminRepository = terminRepository;
     }
 
     @Override
@@ -33,9 +37,9 @@ public class KorisnikServiceImpl implements KorisnikService {
 
     @Override
     public Korisnik create(Korisnik korisnik) throws Exception {
-        if(korisnik.getId() != null){
+        /*if(korisnik.getId() != null){
             throw new Exception("ID mora biti null!");
-        }
+        }*/
         Korisnik newKorisnik = this.korisnikRepository.save(korisnik);
         return newKorisnik;
     }

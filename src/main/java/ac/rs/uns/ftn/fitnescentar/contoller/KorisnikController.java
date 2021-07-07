@@ -1,19 +1,20 @@
 package ac.rs.uns.ftn.fitnescentar.contoller;
 
-import ac.rs.uns.ftn.fitnescentar.model.Korisnik;
-import ac.rs.uns.ftn.fitnescentar.model.Uloge;
-import ac.rs.uns.ftn.fitnescentar.model.dto.KorisnikDTO;
-import ac.rs.uns.ftn.fitnescentar.model.dto.KorisnikPrijavaDTO;
-import ac.rs.uns.ftn.fitnescentar.model.dto.TrenerDTO;
+import ac.rs.uns.ftn.fitnescentar.model.*;
+import ac.rs.uns.ftn.fitnescentar.model.dto.*;
 import ac.rs.uns.ftn.fitnescentar.service.KorisnikService;
+import ac.rs.uns.ftn.fitnescentar.service.TerminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @CrossOrigin
 @RestController
@@ -22,9 +23,12 @@ public class KorisnikController {
 
     private final KorisnikService korisnikService;
 
+    private final TerminService terminService;
+
     @Autowired
-    public KorisnikController(KorisnikService korisnikService) {
+    public KorisnikController(KorisnikService korisnikService, TerminService terminService) {
         this.korisnikService = korisnikService;
+        this.terminService = terminService;
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -201,5 +205,112 @@ public class KorisnikController {
         // Vraćamo odgovor 204 NO_CONTENT koji signalizira uspešno brisanje
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    //prijava treninga
+    @GetMapping(value = "/prijaviTrening/{idKorisnik}/{idTermin}")
+    public ResponseEntity<?> prijaviTrening(@PathVariable("idKorisnik") Long idKorisnik, @PathVariable("idTermin") Long idTermin) throws Exception{
+
+        Korisnik korisnik = this.korisnikService.findOne(idKorisnik);
+
+        Termin termin = this.terminService.findOne(idTermin);
+
+        Set<Termin> prijavljeniTermini = korisnik.getPrijavljeniTermini();
+
+        prijavljeniTermini.add(termin);
+
+        if(korisnik!=null&&termin.getBrojPrijavljenihClanova()<termin.getSala_termin().getKapacitet()) {
+            this.korisnikService.create(korisnik);
+            termin.setBrojPrijavljenihClanova(termin.getBrojPrijavljenihClanova()+1);
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    //prijavljeni treninzi
+    @GetMapping(value = "/prijavljeniTermini/{id}")
+    public ResponseEntity<List<TerminPrijavaDTO>> getPrijavljeniTreninzi(@PathVariable("id") Long id){
+        Korisnik korisnik = this.korisnikService.findOne(id);
+        Set<Termin> termins = korisnik.getPrijavljeniTermini();
+        List<TerminPrijavaDTO> terminPrijavaDTOS = new ArrayList<>();
+
+        for(Termin termin : termins){
+            TerminPrijavaDTO terminPrijavaDTO = new TerminPrijavaDTO();
+            terminPrijavaDTO.setId(termin.getId());
+            terminPrijavaDTO.setNaziv(termin.getTreningtermin().getNaziv());
+            terminPrijavaDTO.setTipTreninga(termin.getTreningtermin().getTipTreninga());
+            terminPrijavaDTO.setOpis(termin.getTreningtermin().getOpis());
+            terminPrijavaDTO.setVreme(termin.getVreme());
+            terminPrijavaDTO.setOznakaSale(termin.getSala_termin().getOznakaSale());
+            terminPrijavaDTO.setTrajanje(termin.getTreningtermin().getTrajanje());
+            terminPrijavaDTO.setCena(termin.getCena());
+            terminPrijavaDTO.setBrojPrijavljenihClanova(termin.getBrojPrijavljenihClanova());
+            terminPrijavaDTO.setImeTrenera(termin.getTreningtermin().getKorisnik_trening().getIme());
+            terminPrijavaDTO.setPrezimeTrenera(termin.getTreningtermin().getKorisnik_trening().getPrezime());
+
+            terminPrijavaDTOS.add(terminPrijavaDTO);
+        }
+
+        return new ResponseEntity<>(terminPrijavaDTOS, HttpStatus.OK);
+    }
+
+    //odjava treninga
+    @GetMapping(value = "/odjaviTrening/{idKorisnik}/{idTermin}")
+    public ResponseEntity<?> odjaviTrening(@PathVariable("idKorisnik") Long idKorisnik, @PathVariable("idTermin") Long idTermin) throws Exception{
+
+        Korisnik korisnik = this.korisnikService.findOne(idKorisnik);
+
+        Termin termin = this.terminService.findOne(idTermin);
+
+        Set<Termin> prijavljeniTermini = korisnik.getPrijavljeniTermini();
+
+        prijavljeniTermini.remove(termin);
+
+        if(korisnik!=null) {
+            this.korisnikService.create(korisnik);
+            termin.setBrojPrijavljenihClanova(termin.getBrojPrijavljenihClanova()-1);
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    //odradjeni treninzi
+    @GetMapping(value = "/odradjeniTreninzi/{id}")
+    public ResponseEntity<List<TerminPrijavaDTO>> getOdradjeniTreninzi(@PathVariable("id") Long id){
+        Korisnik korisnik = this.korisnikService.findOne(id);
+        Set<Termin> termins = korisnik.getOdradjeniTermini();
+        List<TerminPrijavaDTO> terminPrijavaDTOS = new ArrayList<>();
+
+        Date currentDate = new Date();
+
+        for(Termin termin : termins) {
+            if (termin.getVreme().before(currentDate)) {
+                TerminPrijavaDTO terminPrijavaDTO = new TerminPrijavaDTO();
+                terminPrijavaDTO.setId(termin.getId());
+                terminPrijavaDTO.setNaziv(termin.getTreningtermin().getNaziv());
+                terminPrijavaDTO.setTipTreninga(termin.getTreningtermin().getTipTreninga());
+                terminPrijavaDTO.setOpis(termin.getTreningtermin().getOpis());
+                terminPrijavaDTO.setVreme(termin.getVreme());
+                terminPrijavaDTO.setOznakaSale(termin.getSala_termin().getOznakaSale());
+                terminPrijavaDTO.setTrajanje(termin.getTreningtermin().getTrajanje());
+                terminPrijavaDTO.setCena(termin.getCena());
+                terminPrijavaDTO.setBrojPrijavljenihClanova(termin.getBrojPrijavljenihClanova());
+                terminPrijavaDTO.setImeTrenera(termin.getTreningtermin().getKorisnik_trening().getIme());
+                terminPrijavaDTO.setPrezimeTrenera(termin.getTreningtermin().getKorisnik_trening().getPrezime());
+
+                terminPrijavaDTOS.add(terminPrijavaDTO);
+            }
+        }
+
+        return new ResponseEntity<>(terminPrijavaDTOS, HttpStatus.OK);
+    }
+
+
+
+
+
 
 }

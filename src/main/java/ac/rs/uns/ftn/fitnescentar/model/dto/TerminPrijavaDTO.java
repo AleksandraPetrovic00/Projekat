@@ -4,7 +4,7 @@ import ac.rs.uns.ftn.fitnescentar.model.TipTreninga;
 
 import java.sql.Date;
 
-public class TerminDTO {
+public class TerminPrijavaDTO {
 
     private Long id;
     private String naziv;
@@ -15,10 +15,12 @@ public class TerminDTO {
     private int trajanje;
     private double cena;
     private int brojPrijavljenihClanova;
+    private String imeTrenera;
+    private String prezimeTrenera;
 
-    public TerminDTO() {}
+    public TerminPrijavaDTO(){}
 
-    public TerminDTO(Long id, String naziv, TipTreninga tipTreninga, String opis, Date vreme, String oznakaSale, int trajanje, double cena, int brojPrijavljenihClanova) {
+    public TerminPrijavaDTO(Long id, String naziv, TipTreninga tipTreninga, String opis, Date vreme, String oznakaSale, int trajanje, double cena, int brojPrijavljenihClanova, String imeTrenera, String prezimeTrenera) {
         this.id = id;
         this.naziv = naziv;
         this.tipTreninga = tipTreninga;
@@ -28,6 +30,8 @@ public class TerminDTO {
         this.trajanje = trajanje;
         this.cena = cena;
         this.brojPrijavljenihClanova = brojPrijavljenihClanova;
+        this.imeTrenera = imeTrenera;
+        this.prezimeTrenera = prezimeTrenera;
     }
 
     public Long getId() {
@@ -102,4 +106,19 @@ public class TerminDTO {
         this.brojPrijavljenihClanova = brojPrijavljenihClanova;
     }
 
+    public String getImeTrenera() {
+        return imeTrenera;
+    }
+
+    public void setImeTrenera(String imeTrenera) {
+        this.imeTrenera = imeTrenera;
+    }
+
+    public String getPrezimeTrenera() {
+        return prezimeTrenera;
+    }
+
+    public void setPrezimeTrenera(String prezimeTrenera) {
+        this.prezimeTrenera = prezimeTrenera;
+    }
 }

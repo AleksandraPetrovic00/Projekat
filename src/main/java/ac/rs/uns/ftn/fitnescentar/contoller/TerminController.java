@@ -1,9 +1,14 @@
 package ac.rs.uns.ftn.fitnescentar.contoller;
 
+import ac.rs.uns.ftn.fitnescentar.model.Korisnik;
 import ac.rs.uns.ftn.fitnescentar.model.Termin;
 import ac.rs.uns.ftn.fitnescentar.model.TipTreninga;
+import ac.rs.uns.ftn.fitnescentar.model.dto.KorisnikDTO;
+import ac.rs.uns.ftn.fitnescentar.model.dto.TerminDTO;
+import ac.rs.uns.ftn.fitnescentar.model.dto.TerminPrijavaDTO;
 import ac.rs.uns.ftn.fitnescentar.model.dto.TerminTrDTO;
 import ac.rs.uns.ftn.fitnescentar.service.TerminService;
+import ac.rs.uns.ftn.fitnescentar.service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -40,6 +45,27 @@ public class TerminController {
 
         }
         return new ResponseEntity<>(terminTrDTOS, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TerminPrijavaDTO> getTermin(@PathVariable("id") Long id) {
+
+        Termin termin = this.terminService.findOne(id);
+
+        TerminPrijavaDTO terminPrijavaDTO =  new TerminPrijavaDTO();
+        terminPrijavaDTO.setId(termin.getId());
+        terminPrijavaDTO.setNaziv(termin.getTreningtermin().getNaziv());
+        terminPrijavaDTO.setTipTreninga(termin.getTreningtermin().getTipTreninga());
+        terminPrijavaDTO.setOpis(termin.getTreningtermin().getOpis());
+        terminPrijavaDTO.setVreme(termin.getVreme());
+        terminPrijavaDTO.setOznakaSale(termin.getSala_termin().getOznakaSale());
+        terminPrijavaDTO.setTrajanje(termin.getTreningtermin().getTrajanje());
+        terminPrijavaDTO.setCena(termin.getCena());
+        terminPrijavaDTO.setBrojPrijavljenihClanova(termin.getBrojPrijavljenihClanova());
+        terminPrijavaDTO.setImeTrenera(termin.getTreningtermin().getKorisnik_trening().getIme());
+        terminPrijavaDTO.setPrezimeTrenera(termin.getTreningtermin().getKorisnik_trening().getPrezime());
+        return new ResponseEntity<>(terminPrijavaDTO, HttpStatus.OK);
+
     }
 
     @GetMapping(value="/naziv/{naziv}")
@@ -211,6 +237,10 @@ public class TerminController {
 
         return new ResponseEntity<>(terminTrDTOS, HttpStatus.OK);
     }
+
+
+
+
 
 
 

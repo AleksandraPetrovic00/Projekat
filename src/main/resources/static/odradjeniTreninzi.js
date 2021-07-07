@@ -2,7 +2,7 @@ $(document).ready(function() {
     let id=window.localStorage.getItem("Id");
     $.ajax({
         type: "GET",
-        url: "http://localhost:8090/api/korisnici/prijavljeniTermini/"+id,
+        url: "http://localhost:8090/api/korisnici/odradjeniTreninzi/"+id,
         dataType: "json",
         success: function(response) {
             console.log("USPESNO", response);
@@ -21,7 +21,6 @@ $(document).ready(function() {
                 row+= "<td>" + trening.brojPrijavljenihClanova + "</td>";
                 row+= "<td>" + trening.imeTrenera + "</td>";
                 row+= "<td>" + trening.prezimeTrenera + "</td>";
-                row+="<td><button class='odjavi' data-id='"+trening.id+"' onClick=window.location.href='prijavljeniTreninzi.html'>ODJAVI</button></td>";
                 row+="</tr>";
 
                 $('.content-table').append(row);
@@ -31,27 +30,5 @@ $(document).ready(function() {
             console.log("ERROR: ", response);
         }
     });
-
-    $(document).on('click', '.odjavi', function(){
-        let idKorisnika = window.localStorage.getItem("Id");
-        console.log(idKorisnika);
-        let idTermin = this.dataset.id;
-        console.log(idTermin);
-        $.ajax({
-        type: "GET",
-        url: "http://localhost:8090/api/korisnici/odjaviTrening/"+idKorisnika+"/"+idTermin,
-        dataType: "json",
-        success: function(response) {
-            console.log("USPESNO", response);
-            console.log(response);
-
-
-        },
-        error: function(response) {
-            console.log("ERROR: ", response);
-
-        }
-    });
-    })
 
 });
