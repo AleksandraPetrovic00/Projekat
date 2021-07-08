@@ -2,6 +2,7 @@ package ac.rs.uns.ftn.fitnescentar.service.impl;
 
 import ac.rs.uns.ftn.fitnescentar.model.Korisnik;
 import ac.rs.uns.ftn.fitnescentar.model.dto.KorisnikPrijavaDTO;
+import ac.rs.uns.ftn.fitnescentar.repository.FitnesCentarRepository;
 import ac.rs.uns.ftn.fitnescentar.repository.KorisnikRepository;
 import ac.rs.uns.ftn.fitnescentar.repository.TerminRepository;
 import ac.rs.uns.ftn.fitnescentar.service.KorisnikService;
@@ -17,10 +18,13 @@ public class KorisnikServiceImpl implements KorisnikService {
 
     private final TerminRepository terminRepository;
 
+    private final FitnesCentarRepository fitnesCentarRepository;
+
     @Autowired
-    public KorisnikServiceImpl(KorisnikRepository korisnikRepository, TerminRepository terminRepository) {
+    public KorisnikServiceImpl(KorisnikRepository korisnikRepository, TerminRepository terminRepository, FitnesCentarRepository fitnesCentarRepository) {
         this.korisnikRepository = korisnikRepository;
         this.terminRepository = terminRepository;
+        this.fitnesCentarRepository = fitnesCentarRepository;
     }
 
     @Override
@@ -75,6 +79,16 @@ public class KorisnikServiceImpl implements KorisnikService {
             return korisnik;
         }
 
+    }
+
+    @Override
+    public Boolean provera(Long id){
+        Korisnik korisnik = this.korisnikRepository.getOne(id);
+        if(korisnik!=null) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override

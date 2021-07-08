@@ -18,6 +18,7 @@ body{
 .title{
     position: absolute;
     float: left;
+    top: 10%;
     margin-top: 10%;
     margin-left: 30%;
     right: 20%;
@@ -59,7 +60,7 @@ h2{
     float: left;
     color: #7cb920;
     left: 39%;
-    top: 62%;
+    top: 40%;
     font-size: 40px;
 }
 
@@ -164,4 +165,39 @@ h3{
     background-color: transparent;
     padding: 10px 40px;
     border: 3px solid #ADFF2F;
+}
+
+.content-table{
+    position: absolute;
+    left: 20%;
+    top: 45%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 20px;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.content-table thead tr{
+    background-color: rgb(134, 197, 40);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.content-table th, .content-table td{
+    padding: 12px 15px;
+    color: white;
+    text-align: center;
+}
+
+.content-table tbody tr{
+    border-bottom: 1px solid grey;
+}
+
+.content-table tbody tr:last-of-type{
+    border-bottom: 2px solid #ADFF2F;
 }

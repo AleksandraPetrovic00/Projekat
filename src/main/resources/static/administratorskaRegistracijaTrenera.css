@@ -18,6 +18,7 @@ body{
 .reg-box{
     position: absolute;
     top: 17%;
+    left: 50%;
     width: 35%;
     background-color: rgba(0, 0, 0, 0.4);
     text-align: center;
@@ -164,4 +165,37 @@ h3{
     border-bottom: 1px solid #ADFF2F
 }
 
-/*------------------------------------*/
+.content-table{
+    position: absolute;
+    left: 20%;
+    top: 25%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 20px;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.content-table thead tr{
+    background-color: rgb(134, 197, 40);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.content-table th, .content-table td{
+    padding: 12px 15px;
+    color: white;
+    text-align: center;
+}
+
+.content-table tbody tr{
+    border-bottom: 1px solid grey;
+}
+
+.content-table tbody tr:last-of-type{
+    border-bottom: 2px solid #ADFF2F;
+}

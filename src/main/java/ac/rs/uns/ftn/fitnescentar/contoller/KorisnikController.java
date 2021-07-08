@@ -2,6 +2,7 @@ package ac.rs.uns.ftn.fitnescentar.contoller;
 
 import ac.rs.uns.ftn.fitnescentar.model.*;
 import ac.rs.uns.ftn.fitnescentar.model.dto.*;
+import ac.rs.uns.ftn.fitnescentar.service.FitnesCentarService;
 import ac.rs.uns.ftn.fitnescentar.service.KorisnikService;
 import ac.rs.uns.ftn.fitnescentar.service.TerminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,13 @@ public class KorisnikController {
 
     private final TerminService terminService;
 
+    private final FitnesCentarService fitnesCentarService;
+
     @Autowired
-    public KorisnikController(KorisnikService korisnikService, TerminService terminService) {
+    public KorisnikController(KorisnikService korisnikService, TerminService terminService, FitnesCentarService fitnesCentarService) {
         this.korisnikService = korisnikService;
         this.terminService = terminService;
+        this.fitnesCentarService = fitnesCentarService;
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -169,16 +173,45 @@ public class KorisnikController {
         return new ResponseEntity<>(newKorisnikDTO, HttpStatus.CREATED);
     }
 
-    @PostMapping(value = "/administratorskaRegistracija")
-    public ResponseEntity<KorisnikDTO> registerTrener(@RequestBody KorisnikDTO korisnikDTO) throws Exception{
+    @PostMapping(value = "/registracija/{id}")
+    public ResponseEntity<KorisnikRegistracijaDTO> registerTrener(@PathVariable("id")Long id, @RequestBody KorisnikRegistracijaDTO korisnikRegistracijaDTO) throws Exception{
 
-        Korisnik korisnik = new Korisnik(korisnikDTO.getKorisnickoIme(), korisnikDTO.getLozinka(), korisnikDTO.getIme(), korisnikDTO.getPrezime(), korisnikDTO.getKontaktTelefon(), korisnikDTO.getEmailAdresa(), korisnikDTO.getDatumRodjenja(), korisnikDTO.getUloga(), korisnikDTO.isAktivan());
+        Korisnik korisnik = new Korisnik(korisnikRegistracijaDTO.getKorisnickoIme(), korisnikRegistracijaDTO.getLozinka(), korisnikRegistracijaDTO.getIme(), korisnikRegistracijaDTO.getPrezime(), korisnikRegistracijaDTO.getKontaktTelefon(), korisnikRegistracijaDTO.getEmailAdresa(), korisnikRegistracijaDTO.getDatumRodjenja(), korisnikRegistracijaDTO.getUloga(), korisnikRegistracijaDTO.isAktivan());
+
+        if(korisnik.getUloga()==Uloge.TRENER) {
+
+            korisnik.setAktivan(false);
+            //System.out.println(korisnik.getUloga());
+            //System.out.println(korisnik.isAktivan());
+        }else{
+            korisnik.setAktivan(true);
+            //System.out.println(korisnik.getUloga());
+            //System.out.println(korisnik.isAktivan());
+        }
+
+        FitnesCentar fitnesCentar = this.fitnesCentarService.findOne(id);
+        korisnik.setFitnescentar_korisnik(fitnesCentar);
+        Korisnik newKorisnik = korisnikService.create(korisnik);
+
+        KorisnikRegistracijaDTO newKorisnikDTO = new KorisnikRegistracijaDTO(newKorisnik.getId(), newKorisnik.getKorisnickoIme(), newKorisnik.getLozinka(), newKorisnik.getIme(), newKorisnik.getPrezime(), newKorisnik.getKontaktTelefon(), newKorisnik.getEmailAdresa(), newKorisnik.getDatumRodjenja(), newKorisnik.getUloga(), newKorisnik.isAktivan(), id);
+
+        //201 CREATED i podaci o novom objektu
+        return new ResponseEntity<>(newKorisnikDTO, HttpStatus.CREATED);
+    }
+
+    @PostMapping(value = "/administratorskaRegistracija/{id}")
+    public ResponseEntity<KorisnikRegistracijaDTO> adminRegisterTrener(@PathVariable Long id, @RequestBody KorisnikRegistracijaDTO korisnikRegistracijaDTO) throws Exception{
+
+        Korisnik korisnik = new Korisnik(korisnikRegistracijaDTO.getKorisnickoIme(), korisnikRegistracijaDTO.getLozinka(), korisnikRegistracijaDTO.getIme(), korisnikRegistracijaDTO.getPrezime(), korisnikRegistracijaDTO.getKontaktTelefon(), korisnikRegistracijaDTO.getEmailAdresa(), korisnikRegistracijaDTO.getDatumRodjenja(), korisnikRegistracijaDTO.getUloga(), korisnikRegistracijaDTO.isAktivan());
 
         korisnik.setAktivan(true);
 
+        FitnesCentar fitnesCentar = this.fitnesCentarService.findOne(id);
+        korisnik.setFitnescentar_korisnik(fitnesCentar);
+
         Korisnik newKorisnik = korisnikService.create(korisnik);
 
-        KorisnikDTO newKorisnikDTO = new KorisnikDTO(newKorisnik.getId(), newKorisnik.getKorisnickoIme(), newKorisnik.getLozinka(), newKorisnik.getIme(), newKorisnik.getPrezime(), newKorisnik.getKontaktTelefon(), newKorisnik.getEmailAdresa(), newKorisnik.getDatumRodjenja(), newKorisnik.getUloga(), newKorisnik.isAktivan());
+        KorisnikRegistracijaDTO newKorisnikDTO = new KorisnikRegistracijaDTO(newKorisnik.getId(), newKorisnik.getKorisnickoIme(), newKorisnik.getLozinka(), newKorisnik.getIme(), newKorisnik.getPrezime(), newKorisnik.getKontaktTelefon(), newKorisnik.getEmailAdresa(), newKorisnik.getDatumRodjenja(), newKorisnik.getUloga(), newKorisnik.isAktivan(), id);
 
         //201 CREATED i podaci o novom objektu
         return new ResponseEntity<>(newKorisnikDTO, HttpStatus.CREATED);

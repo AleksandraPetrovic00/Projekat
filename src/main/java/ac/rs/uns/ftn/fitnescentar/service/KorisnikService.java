@@ -14,6 +14,8 @@ public interface KorisnikService {
 
     Korisnik prijava(KorisnikPrijavaDTO korisnikPrijavaDTO);
 
+    Boolean provera(Long id);
+
     Korisnik update(Korisnik korisnik) throws Exception;
 
     Korisnik create(Korisnik korisnik) throws Exception;
