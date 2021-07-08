@@ -18,7 +18,9 @@ public class Ocena implements Serializable {
     private Korisnik korisnik_ocena;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Trening termin_ocena;
+    private Termin termin_ocena;
+
+    public Ocena(){}
 
     public Long getId() {
         return id;
@@ -30,5 +32,25 @@ public class Ocena implements Serializable {
 
     public void setOcena(int ocena) {
         this.ocena = ocena;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Korisnik getKorisnik_ocena() {
+        return korisnik_ocena;
+    }
+
+    public void setKorisnik_ocena(Korisnik korisnik_ocena) {
+        this.korisnik_ocena = korisnik_ocena;
+    }
+
+    public Termin getTermin_ocena() {
+        return termin_ocena;
+    }
+
+    public void setTermin_ocena(Termin termin_ocena) {
+        this.termin_ocena = termin_ocena;
     }
 }

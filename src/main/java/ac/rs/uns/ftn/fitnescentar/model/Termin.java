@@ -2,8 +2,10 @@ package ac.rs.uns.ftn.fitnescentar.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 import java.sql.Date;
 import java.sql.Timestamp;
+
 import java.util.HashSet;
 import java.util.Set;
 

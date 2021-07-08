@@ -4,8 +4,7 @@ import ac.rs.uns.ftn.fitnescentar.model.TipTreninga;
 
 import java.sql.Date;
 
-public class TerminTrDTO {
-
+public class OcenaDTO {
     private Long id;
     private String naziv;
     private TipTreninga tipTreninga;
@@ -15,10 +14,14 @@ public class TerminTrDTO {
     private int trajanje;
     private double cena;
     private int brojPrijavljenihClanova;
+    private String imeTrenera;
+    private String prezimeTrenera;
+    private int ocena;
 
-    public TerminTrDTO() {}
+    public OcenaDTO(){
+    }
 
-    public TerminTrDTO(Long id, String naziv, TipTreninga tipTreninga, String opis, Date vreme, String oznakaSale, int trajanje, double cena, int brojPrijavljenihClanova) {
+    public OcenaDTO(Long id, String naziv, TipTreninga tipTreninga, String opis, Date vreme, String oznakaSale, int trajanje, double cena, int brojPrijavljenihClanova, String imeTrenera, String prezimeTrenera, int ocena) {
         this.id = id;
         this.naziv = naziv;
         this.tipTreninga = tipTreninga;
@@ -28,6 +31,9 @@ public class TerminTrDTO {
         this.trajanje = trajanje;
         this.cena = cena;
         this.brojPrijavljenihClanova = brojPrijavljenihClanova;
+        this.imeTrenera = imeTrenera;
+        this.prezimeTrenera = prezimeTrenera;
+        this.ocena = ocena;
     }
 
     public Long getId() {
@@ -100,5 +106,29 @@ public class TerminTrDTO {
 
     public void setBrojPrijavljenihClanova(int brojPrijavljenihClanova) {
         this.brojPrijavljenihClanova = brojPrijavljenihClanova;
+    }
+
+    public String getImeTrenera() {
+        return imeTrenera;
+    }
+
+    public void setImeTrenera(String imeTrenera) {
+        this.imeTrenera = imeTrenera;
+    }
+
+    public String getPrezimeTrenera() {
+        return prezimeTrenera;
+    }
+
+    public void setPrezimeTrenera(String prezimeTrenera) {
+        this.prezimeTrenera = prezimeTrenera;
+    }
+
+    public int getOcena() {
+        return ocena;
+    }
+
+    public void setOcena(int ocena) {
+        this.ocena = ocena;
     }
 }

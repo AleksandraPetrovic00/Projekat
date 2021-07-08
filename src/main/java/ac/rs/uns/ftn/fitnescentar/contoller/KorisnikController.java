@@ -11,8 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -217,10 +218,10 @@ public class KorisnikController {
         Set<Termin> prijavljeniTermini = korisnik.getPrijavljeniTermini();
 
         prijavljeniTermini.add(termin);
+        termin.setBrojPrijavljenihClanova(termin.getBrojPrijavljenihClanova()+1);
 
         if(korisnik!=null&&termin.getBrojPrijavljenihClanova()<termin.getSala_termin().getKapacitet()) {
             this.korisnikService.create(korisnik);
-            termin.setBrojPrijavljenihClanova(termin.getBrojPrijavljenihClanova()+1);
 
             return new ResponseEntity<>(HttpStatus.OK);
         }else{
@@ -266,10 +267,10 @@ public class KorisnikController {
         Set<Termin> prijavljeniTermini = korisnik.getPrijavljeniTermini();
 
         prijavljeniTermini.remove(termin);
+        termin.setBrojPrijavljenihClanova(termin.getBrojPrijavljenihClanova()-1);
 
         if(korisnik!=null) {
             this.korisnikService.create(korisnik);
-            termin.setBrojPrijavljenihClanova(termin.getBrojPrijavljenihClanova()-1);
 
             return new ResponseEntity<>(HttpStatus.OK);
         }else{
@@ -281,10 +282,12 @@ public class KorisnikController {
     @GetMapping(value = "/odradjeniTreninzi/{id}")
     public ResponseEntity<List<TerminPrijavaDTO>> getOdradjeniTreninzi(@PathVariable("id") Long id){
         Korisnik korisnik = this.korisnikService.findOne(id);
-        Set<Termin> termins = korisnik.getOdradjeniTermini();
+        Set<Termin> termins = korisnik.getPrijavljeniTermini();
         List<TerminPrijavaDTO> terminPrijavaDTOS = new ArrayList<>();
 
-        Date currentDate = new Date();
+        Date currentDate=new Date(System.currentTimeMillis());
+
+        System.out.println(currentDate);
 
         for(Termin termin : termins) {
             if (termin.getVreme().before(currentDate)) {

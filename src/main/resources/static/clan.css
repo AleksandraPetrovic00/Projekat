@@ -1,0 +1,16 @@
+#signOut{
+    float: right;
+    right: 20%;
+    top: 15px;
+    position: absolute;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    padding: 10px 40px;
+    border: 1px solid white;
+}
+
+#SignOut:hover{
+    background-color: white;
+    color: black;
+}
