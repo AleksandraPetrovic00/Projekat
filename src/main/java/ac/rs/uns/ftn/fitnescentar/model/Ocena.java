@@ -11,7 +11,7 @@ public class Ocena implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private int ocena;
 
     @ManyToOne(fetch = FetchType.EAGER)
