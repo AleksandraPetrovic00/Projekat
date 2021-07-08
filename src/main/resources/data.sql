@@ -20,20 +20,19 @@ INSERT INTO SALA (kapacitet, oznaka_sale, fitnescentarsala_id) VALUES ('20', 'A1
 INSERT INTO SALA (kapacitet, oznaka_sale, fitnescentarsala_id) VALUES ('30', 'A2', 1);
 INSERT INTO SALA (kapacitet, oznaka_sale, fitnescentarsala_id) VALUES ('25', 'A3', 2);
 
-INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('10', '2021-08-01', '500', 1, 3);
-INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('12', '2021-09-02', '450', 2, 2);
+INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('10', '2021-09-09', '500', 1, 3);
+INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('12', '2021-09-10', '450', 2, 2);
 INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('8', '2021-06-01', '500', 2, 3);
 INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('15', '2021-06-03', '500', 3, 1);
 INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('12', '2021-06-01', '450', 1, 2);
 
-INSERT INTO OCENA (ocena, korisnik_ocena_id, termin_ocena_id) VALUES ('9', 2, 3);
-INSERT INTO OCENA (ocena, korisnik_ocena_id, termin_ocena_id) VALUES ('10', 3, 2);
+INSERT INTO OCENA (ocena, korisnik_ocena_id, terminocena_id) VALUES ('2', 2, 5);
+INSERT INTO OCENA (ocena, korisnik_ocena_id, terminocena_id) VALUES ('3', 3, 2);
 
-INSERT INTO PRIJAVLJENI_TRENINZI(korisnik_id, termin_id) VALUES (2, 1);
-INSERT INTO PRIJAVLJENI_TRENINZI(korisnik_id, termin_id) VALUES (2, 2);
+INSERT INTO PRIJAVLJENI_TRENINZI(korisnik_id, termin_id) VALUES (2, 3);
+INSERT INTO PRIJAVLJENI_TRENINZI(korisnik_id, termin_id) VALUES (2, 4);
 
-INSERT INTO ODRADJENI_TRENINZI(korisnik_id, termin_id) VALUES (1, 3);
-INSERT INTO ODRADJENI_TRENINZI(korisnik_id, termin_id) VALUES (2, 5);
+
 
 
 

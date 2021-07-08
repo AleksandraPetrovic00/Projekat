@@ -1,14 +1,13 @@
 package ac.rs.uns.ftn.fitnescentar.contoller;
 
 import ac.rs.uns.ftn.fitnescentar.model.Korisnik;
+import ac.rs.uns.ftn.fitnescentar.model.Ocena;
 import ac.rs.uns.ftn.fitnescentar.model.Termin;
 import ac.rs.uns.ftn.fitnescentar.model.TipTreninga;
-import ac.rs.uns.ftn.fitnescentar.model.dto.KorisnikDTO;
-import ac.rs.uns.ftn.fitnescentar.model.dto.TerminDTO;
-import ac.rs.uns.ftn.fitnescentar.model.dto.TerminPrijavaDTO;
-import ac.rs.uns.ftn.fitnescentar.model.dto.TerminTrDTO;
+import ac.rs.uns.ftn.fitnescentar.model.dto.*;
 import ac.rs.uns.ftn.fitnescentar.service.TerminService;
 import ac.rs.uns.ftn.fitnescentar.service.KorisnikService;
+import ac.rs.uns.ftn.fitnescentar.service.TreningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,10 +26,14 @@ import java.util.List;
 public class TerminController {
 
     private final TerminService terminService;
+    private final KorisnikService korisnikService;
+    private final TreningService treningService;
 
     @Autowired
-    public TerminController(TerminService terminService){
+    public TerminController(TerminService terminService, KorisnikService korisnikService, TreningService treningService){
         this.terminService = terminService;
+        this.korisnikService = korisnikService;
+        this.treningService = treningService;
     }
 
     @GetMapping(value = "/svitreninzi")
@@ -238,12 +241,28 @@ public class TerminController {
         return new ResponseEntity<>(terminTrDTOS, HttpStatus.OK);
     }
 
+    /*@PostMapping(value = "/noviTermin/{idTrenera}/{idTermina}")
+    public ResponseEntity<OcenaNewDTO> oceniTrening(@RequestBody OcenaNewDTO ocenaNewDTO, @PathVariable("idTrenera") Long idTrenera, @PathVariable("idTermina")Long idTermina) throws Exception{
 
+        Korisnik korisnik = this.korisnikService.findOne(idTrenera);
 
+        Termin termin = this.terminService.findOne(idTermina);
 
+        Termin termin1 = new Ocena();
+        ocena.setId(ocenaNewDTO.getId());
+        ocena.setOcena(ocenaNewDTO.getOcena());
+        ocena.setKorisnik_ocena(korisnik);
+        ocena.setTermin_ocena(termin);
 
+        Ocena newOcena = ocenaService.create(ocena);
 
+        OcenaNewDTO newOcenaNewDTO = new OcenaNewDTO();
+        newOcenaNewDTO.setId(newOcena.getId());
+        newOcenaNewDTO.setOcena(newOcena.getOcena());
+        newOcenaNewDTO.setIdKorisnik(newOcena.getKorisnik_ocena().getId());
+        newOcenaNewDTO.setIdTermin(newOcena.getTermin_ocena().getId());
 
-
+        return new ResponseEntity<>(newOcenaNewDTO, HttpStatus.CREATED);
+    }*/
 
 }

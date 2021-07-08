@@ -7,6 +7,7 @@ import ac.rs.uns.ftn.fitnescentar.model.Uloge;
 import ac.rs.uns.ftn.fitnescentar.model.dto.KorisnikDTO;
 import ac.rs.uns.ftn.fitnescentar.model.dto.OcenaDTO;
 import ac.rs.uns.ftn.fitnescentar.model.dto.OcenaNewDTO;
+import ac.rs.uns.ftn.fitnescentar.model.dto.TerminPrijavaDTO;
 import ac.rs.uns.ftn.fitnescentar.service.KorisnikService;
 import ac.rs.uns.ftn.fitnescentar.service.OcenaService;
 import ac.rs.uns.ftn.fitnescentar.service.TerminService;
@@ -16,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -81,38 +83,40 @@ public class OcenaController {
     }
 
     @GetMapping(value = "/odradjeniNeocenjeni/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<OcenaDTO>> getOdradjeniNeocenjeni(@PathVariable("id") Long id) {
+    public ResponseEntity<List<TerminPrijavaDTO>> getOdradjeniNeocenjeni(@PathVariable("id") Long id) {
         Korisnik korisnik = this.korisnikService.findOne(id);
-        Set<Ocena> ocene = korisnik.getOcene();
-        List<OcenaDTO> ocenaDTOS = new ArrayList<>();
+        Set<Termin> termini = korisnik.getPrijavljeniTermini();
+        List<TerminPrijavaDTO> terminPrijavaDTOS = new ArrayList<>();
 
-        for (Ocena ocena : ocene) {
-            int o = ocena.getOcena();
+        Date currentDate=new Date(System.currentTimeMillis());
 
-            if (o==0) {
-                OcenaDTO ocenaDTO = new OcenaDTO();
-                ocenaDTO.setId(ocena.getId());
-                ocenaDTO.setNaziv(ocena.getTermin_ocena().getTreningtermin().getNaziv());
-                ocenaDTO.setTipTreninga(ocena.getTermin_ocena().getTreningtermin().getTipTreninga());
-                ocenaDTO.setOpis(ocena.getTermin_ocena().getTreningtermin().getOpis());
-                ocenaDTO.setVreme(ocena.getTermin_ocena().getVreme());
-                ocenaDTO.setOznakaSale(ocena.getTermin_ocena().getSala_termin().getOznakaSale());
-                ocenaDTO.setTrajanje(ocena.getTermin_ocena().getTreningtermin().getTrajanje());
-                ocenaDTO.setCena(ocena.getTermin_ocena().getCena());
-                ocenaDTO.setBrojPrijavljenihClanova(ocena.getTermin_ocena().getBrojPrijavljenihClanova());
-                ocenaDTO.setImeTrenera(ocena.getTermin_ocena().getTreningtermin().getKorisnik_trening().getIme());
-                ocenaDTO.setPrezimeTrenera(ocena.getTermin_ocena().getTreningtermin().getKorisnik_trening().getPrezime());
-                ocenaDTOS.add(ocenaDTO);
+        for (Termin termin : termini) {
+            Long idTermina = termin.getId();
+            Ocena ocena = this.ocenaService.pronadjiPoTerminu(idTermina);
 
+            if (ocena==null&&termin.getVreme().before(currentDate)) {
+                TerminPrijavaDTO terminPrijavaDTO = new TerminPrijavaDTO();
+                terminPrijavaDTO.setId(termin.getId());
+                terminPrijavaDTO.setNaziv(termin.getTreningtermin().getNaziv());
+                terminPrijavaDTO.setTipTreninga(termin.getTreningtermin().getTipTreninga());
+                terminPrijavaDTO.setOpis(termin.getTreningtermin().getOpis());
+                terminPrijavaDTO.setVreme(termin.getVreme());
+                terminPrijavaDTO.setOznakaSale(termin.getSala_termin().getOznakaSale());
+                terminPrijavaDTO.setTrajanje(termin.getTreningtermin().getTrajanje());
+                terminPrijavaDTO.setCena(termin.getCena());
+                terminPrijavaDTO.setBrojPrijavljenihClanova(termin.getBrojPrijavljenihClanova());
+                terminPrijavaDTO.setImeTrenera(termin.getTreningtermin().getKorisnik_trening().getIme());
+                terminPrijavaDTO.setPrezimeTrenera(termin.getTreningtermin().getKorisnik_trening().getPrezime());
+                terminPrijavaDTOS.add(terminPrijavaDTO);
             }
 
         }
-        return new ResponseEntity<>(ocenaDTOS, HttpStatus.OK);
+        return new ResponseEntity<>(terminPrijavaDTOS, HttpStatus.OK);
     }
 
     //oceni trening
     @PostMapping(value = "/oceniTrening/{idKorisnika}/{idTermina}")
-    public ResponseEntity<OcenaNewDTO> oceniTrening(@RequestBody OcenaNewDTO ocenaNewDTO, @PathVariable("idKorisnika") Long idKorisnika, @PathVariable("idTermina")Long idTermina) throws Exception{
+    public ResponseEntity<OcenaNewDTO> oceniTrening(@PathVariable("idKorisnika") Long idKorisnika, @PathVariable("idTermina")Long idTermina, @RequestBody OcenaNewDTO ocenaNewDTO) throws Exception{
 
         Korisnik korisnik = this.korisnikService.findOne(idKorisnika);
 

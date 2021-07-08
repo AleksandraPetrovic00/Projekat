@@ -64,5 +64,12 @@ public class OcenaServiceImpl implements OcenaService {
         this.ocenaRepository.deleteById(id);
     }
 
+    @Override
+    public Ocena pronadjiPoTerminu(Long id){
+        Ocena ocena = this.ocenaRepository.findByTerminocenaId(id);
+
+        return ocena;
+    }
+
 
 }

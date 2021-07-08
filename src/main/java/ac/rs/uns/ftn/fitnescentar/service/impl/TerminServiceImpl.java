@@ -3,7 +3,9 @@ package ac.rs.uns.ftn.fitnescentar.service.impl;
 import ac.rs.uns.ftn.fitnescentar.model.Korisnik;
 import ac.rs.uns.ftn.fitnescentar.model.Termin;
 import ac.rs.uns.ftn.fitnescentar.model.TipTreninga;
+import ac.rs.uns.ftn.fitnescentar.repository.KorisnikRepository;
 import ac.rs.uns.ftn.fitnescentar.repository.TerminRepository;
+import ac.rs.uns.ftn.fitnescentar.repository.TreningRepository;
 import ac.rs.uns.ftn.fitnescentar.service.TerminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +20,14 @@ import java.util.List;
 public class TerminServiceImpl implements TerminService {
 
     private final TerminRepository terminRepository;
+    private final KorisnikRepository korisnikRepository;
+    private final TreningRepository treningRepository;
 
     @Autowired
-    public TerminServiceImpl(TerminRepository terminRepository){
+    public TerminServiceImpl(TerminRepository terminRepository, KorisnikRepository korisnikRepository, TreningRepository treningRepository){
         this.terminRepository = terminRepository;
+        this.korisnikRepository = korisnikRepository;
+        this.treningRepository = treningRepository;
     }
 
     @Override

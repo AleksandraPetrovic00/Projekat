@@ -10,6 +10,8 @@ public interface OcenaService {
 
     List<Ocena> findAll();
 
+    Ocena pronadjiPoTerminu(Long id);
+
     Ocena create(Ocena ocena) throws Exception;
 
     Ocena update(Ocena ocena) throws Exception;

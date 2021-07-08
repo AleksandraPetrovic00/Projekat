@@ -1,8 +1,10 @@
 package ac.rs.uns.ftn.fitnescentar.contoller;
 
+import ac.rs.uns.ftn.fitnescentar.model.FitnesCentar;
 import ac.rs.uns.ftn.fitnescentar.model.Sala;
 import ac.rs.uns.ftn.fitnescentar.model.dto.SalaDTO;
 import ac.rs.uns.ftn.fitnescentar.model.dto.SalaFcDTO;
+import ac.rs.uns.ftn.fitnescentar.service.FitnesCentarService;
 import ac.rs.uns.ftn.fitnescentar.service.SalaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,10 +21,12 @@ import java.util.List;
 public class SalaController {
 
     private final SalaService salaService;
+    private final FitnesCentarService fitnesCentarService;
 
     @Autowired
-    public SalaController(SalaService salaService) {
+    public SalaController(SalaService salaService, FitnesCentarService fitnesCentarService) {
         this.salaService = salaService;
+        this.fitnesCentarService = fitnesCentarService;
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -69,15 +73,16 @@ public class SalaController {
         return  new ResponseEntity<>(salaDTOS, HttpStatus.OK);
     }
 
-    /////isparvi
-    @PostMapping(value = "/dodaj/{id}",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<SalaFcDTO> createSala(@PathVariable Long id, @RequestBody SalaFcDTO salaFcDTO) throws Exception {
+    @PostMapping(value = "/dodaj/{idFC}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<SalaFcDTO> createSala(@PathVariable("idFC") Long idFC, @RequestBody SalaFcDTO salaFcDTO) throws Exception {
 
         Sala sala = new Sala(salaFcDTO.getKapacitet(), salaFcDTO.getOznakaSale());
 
+        FitnesCentar fitnesCentar =this.fitnesCentarService.findOne(idFC);
+        sala.setFitnescentarsala(fitnesCentar);
         Sala newSala = salaService.create(sala);
 
-        SalaFcDTO newSalaFcDTO = new SalaFcDTO(newSala.getId(), newSala.getKapacitet(), newSala.getOznakaSale(), newSala.getFitnescentarsala().getId());
+        SalaFcDTO newSalaFcDTO = new SalaFcDTO(newSala.getId(), newSala.getKapacitet(), newSala.getOznakaSale(), idFC);
 
         return new ResponseEntity<>(newSalaFcDTO, HttpStatus.CREATED);
     }

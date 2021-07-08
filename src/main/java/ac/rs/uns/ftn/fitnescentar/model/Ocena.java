@@ -18,7 +18,7 @@ public class Ocena implements Serializable {
     private Korisnik korisnik_ocena;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Termin termin_ocena;
+    private Termin terminocena;
 
     public Ocena(){}
 
@@ -47,10 +47,10 @@ public class Ocena implements Serializable {
     }
 
     public Termin getTermin_ocena() {
-        return termin_ocena;
+        return terminocena;
     }
 
-    public void setTermin_ocena(Termin termin_ocena) {
-        this.termin_ocena = termin_ocena;
+    public void setTermin_ocena(Termin terminocena) {
+        this.terminocena = terminocena;
     }
 }

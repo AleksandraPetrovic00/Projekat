@@ -220,12 +220,19 @@ public class KorisnikController {
         prijavljeniTermini.add(termin);
         termin.setBrojPrijavljenihClanova(termin.getBrojPrijavljenihClanova()+1);
 
-        if(korisnik!=null&&termin.getBrojPrijavljenihClanova()<termin.getSala_termin().getKapacitet()) {
-            this.korisnikService.create(korisnik);
-
-            return new ResponseEntity<>(HttpStatus.OK);
-        }else{
+        Date currentDate=new Date(System.currentTimeMillis());
+        System.out.println(currentDate);
+        if(termin.getVreme().before(currentDate)){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }else {
+
+            if (korisnik != null && termin.getBrojPrijavljenihClanova() < termin.getSala_termin().getKapacitet()) {
+                this.korisnikService.create(korisnik);
+
+                return new ResponseEntity<>(HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
         }
     }
 

@@ -31,7 +31,7 @@ public class Termin implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private Sala sala_termin;
 
-    @OneToMany(mappedBy = "termin_ocena", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "terminocena", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Ocena> ocene = new HashSet<>();
 
     @ManyToMany(mappedBy = "odradjeniTermini")
