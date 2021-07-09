@@ -2,10 +2,11 @@
     margin:0;
     padding:0;
     font-family:'Times New Roman', Times, serif;
+    box-sizing: border-box;
 }
 
 body{
-    background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),  url(../images/login.png);
+    background-image:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)),  url(../images/img2.png);
     display:flex;
     align-items: center;
     justify-content: center;
@@ -17,64 +18,32 @@ body{
 .title{
     position: absolute;
     float: left;
-    top: 10%;
-    left: 50%;
+    margin-top: 10%;
+    left: 35%;
     transform: translate(-50%, -50%);
-    color:#9ae42a;
+    color:#ADFF2F;
     font-size: 50px;
     border-bottom: 1px solid #ADFF2F
 }
 
-.content-table{
+h2{
     position: absolute;
-    left: 13%;
-    border-collapse: collapse;
-    top: 30%;
-    margin: 25px 0;
-    font-size: 20px;
-    min-width: 400px;
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    background-color: rgba(0, 0, 0, 0.6);
+    float: left;
+    color: #7cb920;
+    left: 3%;
+    top: 63%;
+    font-size: 40px;
 }
 
-.content-table thead tr{
-    background-color: rgb(134, 197, 40);
-    color: white;
-    text-align: center;
-    font-weight: bold;
+.nav ul{
+    float: right;
+    top: 10px;
+    list-style-type: none;
 }
 
-.content-table th, .content-table td{
-    padding: 12px 15px;
-    color: white;
-    text-align: center;
-}
-
-.content-table tbody tr{
-    border-bottom: 1px solid grey;
-}
-
-.content-table tbody tr:last-of-type{
-    border-bottom: 2px solid #ADFF2F;
-}
-
-#table{
-    position: absolute;
-    right: 25%;
-}
-
-h3{
-    position: absolute;
-    bottom: 15px;
-    left: 2%;
-    text-align: center;
-    color: #ADFF2F;
+.nav ul li{
     display: inline-block;
-    background-color: none;
-    padding: 10px 40px;
-    border: 3px solid #ADFF2F;
+
 }
 
 #home{
@@ -93,26 +62,6 @@ h3{
     color: black;
 }
 
-#singOut{
-    float: left;
-    left: 18%;
-    top: 15px;
-    position: absolute;
-    text-decoration: none;
-    color: white;
-    padding: 11.5px 40px;
-    border: 1px solid white;
-    background-color: transparent;
-    font-weight: bold;
-    cursor: pointer;
-    font-family: 'Times New Roman', Times, serif;
-}
-
-#singOut:hover{
-    background-color: white;
-    color: black;
-}
-
 #coach{
     float: right;
     right: 1.6%;
@@ -126,7 +75,7 @@ h3{
 
 #signUp{
     float: right;
-    right: 20%;
+    right: 15%;
     top: 15px;
     position: absolute;
     text-decoration: none;
@@ -146,42 +95,6 @@ h3{
     border: 1px solid white;
 }
 
-#ocenjeni{
-    position: absolute;
-    right: 15%;
-    top: 60%;
-    background: none;
-    border: 2px solid #ADFF2F;
-    color: white;
-    padding: 10px 40px;
-    font-size: 30px;
-    margin-top: 18px;
-    cursor: pointer;
-}
-
-#ocenjeni:hover{
-    background-color: #ADFF2F;
-    color: black;
-}
-
-#neocenjeni{
-    position: absolute;
-    top: 60%;
-    left: 15%;
-    background: none;
-    border: 2px solid #ADFF2F;
-    color: white;
-    padding: 10px 40px;
-    font-size: 30.5px;
-    margin-top: 18px;
-    cursor: pointer;
-}
-
-#neocenjeni:hover{
-    background-color: #ADFF2F;
-    color: black;
-}
-
 #logIn:hover{
     background-color: white;
     color: black;
@@ -196,3 +109,76 @@ h3{
     background-color: white;
     color: black;
 }
+
+h3{
+    position: absolute;
+    bottom: 15px;
+    left: 2%;
+    text-align: center;
+    color: #ADFF2F;
+    display: inline-block;
+    background-color: none;
+    padding: 10px 40px;
+    border: 3px solid #ADFF2F;
+}
+
+#fitnesCentri{
+    position: absolute;
+    right: 2%;
+    top: 60%;
+    background: none;
+    border: 2px solid #ADFF2F;
+    color: white;
+    padding: 10px 40px;
+    font-size: 30px;
+    margin-top: 18px;
+    cursor: pointer;
+}
+
+#fitnesCentri:hover{
+    background-color: #ADFF2F;
+    color: black;
+}
+
+#treninzi{
+    position: absolute;
+    top: 47%;
+    right: 2%;
+    background: none;
+    border: 2px solid #ADFF2F;
+    color: white;
+    padding: 10px 40px;
+    font-size: 30.5px;
+    margin-top: 18px;
+    cursor: pointer;
+}
+
+#treninzi:hover{
+    background-color: #ADFF2F;
+    color: black;
+}
+
+#singOut{
+    float: left;
+    left: 2%;
+    top: 10%;
+    position: absolute;
+    text-decoration: none;
+    color: white;
+    padding: 11.5px 40px;
+    border: 1px solid white;
+    background-color: transparent;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#singOut:hover{
+    background-color: white;
+    color: black;
+}
+
+
+
+
+

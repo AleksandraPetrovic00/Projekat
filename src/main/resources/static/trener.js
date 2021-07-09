@@ -8,7 +8,7 @@ $(document).ready(function (event) {
         contentType: "application/json",
         data: JSON.stringify(newUpit),
         success: function (response) {
-            if (response.uloga === "ADMINISTRATOR") {
+            if (response.uloga === "TRENER") {
             }
             else {
                 alert("Nemate pristup ovoj stranici!");
@@ -22,7 +22,6 @@ $(document).ready(function (event) {
     });
 
 });
-
 
 $("#singOut").on("click", function(event){
     event.preventDefault();

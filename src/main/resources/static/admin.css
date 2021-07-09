@@ -193,6 +193,26 @@ h3{
     color: black;
 }
 
+#singOut{
+    float: left;
+    left: 2%;
+    top: 10%;
+    position: absolute;
+    text-decoration: none;
+    color: white;
+    padding: 11.5px 40px;
+    border: 1px solid white;
+    background-color: transparent;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#singOut:hover{
+    background-color: white;
+    color: black;
+}
+
 
 
 
