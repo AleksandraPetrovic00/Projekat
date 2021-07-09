@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface SalaRepository extends JpaRepository<Sala, Long> {
 
-    public List<Sala> findAllByFitnescentarsalaId(Long fitnesCentarId);
+    List<Sala> findAllByFitnescentarsalaId(Long fitnesCentarId);
+
 
 }

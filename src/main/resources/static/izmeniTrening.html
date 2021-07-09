@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRENER - Izmeni trening</title>
+    <link rel="stylesheet" href="izmeniTrening.css">
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <div class="title">Izmeni trening</div>
+    
+    <form class="updateTrening" id="trening">
+        <div class="textbox">
+            <label id="nazivlab">Naziv:</label>
+            <input type="text" placeholder="Naziv" id="naziv">
+        </div>
+
+        <div class="textbox">
+            <label id="opislab">Opis:</label>
+            <input type="text" placeholder="Opis" id="opis">
+        </div>
+
+        <div class="textbox">
+            <label id="tipTreningalab">Tip treninga:</label>
+            <input type="text" placeholder="HIIT, CORE, YOGA, CARDIO" id="tipTreninga">
+        </div>
+
+        <div class="textbox">
+            <label id="trajanjelab">Trajanje treninga:</label>
+            <input type="number" placeholder="Trajanje treninga" id="trajanje">
+        </div>
+
+        <input type="submit" class="button" value="Potvrdi izmenu" id="treningSubmit">
+    </form>
+
+    <script src="izmeniTrening.js" defer></script>
+
+</body>
+</html>

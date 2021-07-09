@@ -1,11 +1,7 @@
 package ac.rs.uns.ftn.fitnescentar.service.impl;
 
-import ac.rs.uns.ftn.fitnescentar.model.Korisnik;
-import ac.rs.uns.ftn.fitnescentar.model.Termin;
-import ac.rs.uns.ftn.fitnescentar.model.TipTreninga;
-import ac.rs.uns.ftn.fitnescentar.repository.KorisnikRepository;
-import ac.rs.uns.ftn.fitnescentar.repository.TerminRepository;
-import ac.rs.uns.ftn.fitnescentar.repository.TreningRepository;
+import ac.rs.uns.ftn.fitnescentar.model.*;
+import ac.rs.uns.ftn.fitnescentar.repository.*;
 import ac.rs.uns.ftn.fitnescentar.service.TerminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,12 +18,14 @@ public class TerminServiceImpl implements TerminService {
     private final TerminRepository terminRepository;
     private final KorisnikRepository korisnikRepository;
     private final TreningRepository treningRepository;
+    private final SalaRepository salaRepository;
 
     @Autowired
-    public TerminServiceImpl(TerminRepository terminRepository, KorisnikRepository korisnikRepository, TreningRepository treningRepository){
+    public TerminServiceImpl(TerminRepository terminRepository, KorisnikRepository korisnikRepository, TreningRepository treningRepository, SalaRepository salaRepository){
         this.terminRepository = terminRepository;
         this.korisnikRepository = korisnikRepository;
         this.treningRepository = treningRepository;
+        this.salaRepository = salaRepository;
     }
 
     @Override
@@ -130,6 +128,37 @@ public class TerminServiceImpl implements TerminService {
 
         return termin;
     }
+
+    @Override
+    public Termin create(Termin termin) throws Exception{
+        if(termin.getId()!=null){
+            throw new Exception("ID mora biti null!");
+        }
+        Termin newTermin = this.terminRepository.save(termin);
+        return newTermin;
+    }
+
+    @Override
+    public Termin update(Termin termin) throws Exception{
+        Termin terminToUpdate = this.terminRepository.getOne(termin.getId());
+        if (terminToUpdate == null) {
+            throw new Exception("Termin ne postoji");
+        }
+        terminToUpdate.setVreme(termin.getVreme());
+        terminToUpdate.setCena(termin.getCena());
+        terminToUpdate.setSala_termin(termin.getSala_termin());
+
+        Termin savedTermin = this.terminRepository.save(terminToUpdate);
+        return savedTermin;
+    }
+
+    @Override
+    public List<Termin> sviZaTrenera(Long id){
+        List<Termin> termini = this.terminRepository.findAllByTreningterminKorisniktreningId(id);
+
+        return termini;
+    }
+
 
 
 

@@ -287,8 +287,8 @@ public class KorisnikController {
             terminPrijavaDTO.setTrajanje(termin.getTreningtermin().getTrajanje());
             terminPrijavaDTO.setCena(termin.getCena());
             terminPrijavaDTO.setBrojPrijavljenihClanova(termin.getBrojPrijavljenihClanova());
-            terminPrijavaDTO.setImeTrenera(termin.getTreningtermin().getKorisnik_trening().getIme());
-            terminPrijavaDTO.setPrezimeTrenera(termin.getTreningtermin().getKorisnik_trening().getPrezime());
+            terminPrijavaDTO.setImeTrenera(termin.getTreningtermin().getKorisniktrening().getIme());
+            terminPrijavaDTO.setPrezimeTrenera(termin.getTreningtermin().getKorisniktrening().getPrezime());
 
             terminPrijavaDTOS.add(terminPrijavaDTO);
         }
@@ -341,8 +341,8 @@ public class KorisnikController {
                 terminPrijavaDTO.setTrajanje(termin.getTreningtermin().getTrajanje());
                 terminPrijavaDTO.setCena(termin.getCena());
                 terminPrijavaDTO.setBrojPrijavljenihClanova(termin.getBrojPrijavljenihClanova());
-                terminPrijavaDTO.setImeTrenera(termin.getTreningtermin().getKorisnik_trening().getIme());
-                terminPrijavaDTO.setPrezimeTrenera(termin.getTreningtermin().getKorisnik_trening().getPrezime());
+                terminPrijavaDTO.setImeTrenera(termin.getTreningtermin().getKorisniktrening().getIme());
+                terminPrijavaDTO.setPrezimeTrenera(termin.getTreningtermin().getKorisniktrening().getPrezime());
 
                 terminPrijavaDTOS.add(terminPrijavaDTO);
             }

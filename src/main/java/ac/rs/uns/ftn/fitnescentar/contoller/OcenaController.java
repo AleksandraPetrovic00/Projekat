@@ -72,8 +72,8 @@ public class OcenaController {
             ocenaDTO.setTrajanje(ocena.getTermin_ocena().getTreningtermin().getTrajanje());
             ocenaDTO.setCena(ocena.getTermin_ocena().getCena());
             ocenaDTO.setBrojPrijavljenihClanova(ocena.getTermin_ocena().getBrojPrijavljenihClanova());
-            ocenaDTO.setImeTrenera(ocena.getTermin_ocena().getTreningtermin().getKorisnik_trening().getIme());
-            ocenaDTO.setPrezimeTrenera(ocena.getTermin_ocena().getTreningtermin().getKorisnik_trening().getPrezime());
+            ocenaDTO.setImeTrenera(ocena.getTermin_ocena().getTreningtermin().getKorisniktrening().getIme());
+            ocenaDTO.setPrezimeTrenera(ocena.getTermin_ocena().getTreningtermin().getKorisniktrening().getPrezime());
             ocenaDTO.setOcena(ocena.getOcena());
 
             ocenaDTOS.add(ocenaDTO);
@@ -105,8 +105,8 @@ public class OcenaController {
                 terminPrijavaDTO.setTrajanje(termin.getTreningtermin().getTrajanje());
                 terminPrijavaDTO.setCena(termin.getCena());
                 terminPrijavaDTO.setBrojPrijavljenihClanova(termin.getBrojPrijavljenihClanova());
-                terminPrijavaDTO.setImeTrenera(termin.getTreningtermin().getKorisnik_trening().getIme());
-                terminPrijavaDTO.setPrezimeTrenera(termin.getTreningtermin().getKorisnik_trening().getPrezime());
+                terminPrijavaDTO.setImeTrenera(termin.getTreningtermin().getKorisniktrening().getIme());
+                terminPrijavaDTO.setPrezimeTrenera(termin.getTreningtermin().getKorisniktrening().getPrezime());
                 terminPrijavaDTOS.add(terminPrijavaDTO);
             }
 

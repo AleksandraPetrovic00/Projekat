@@ -12,9 +12,9 @@ INSERT INTO KORISNIK (korisnicko_ime, lozinka, ime, prezime, kontakt_telefon, em
 INSERT INTO KORISNIK (korisnicko_ime, lozinka, ime, prezime, kontakt_telefon, email_adresa, datum_rodjenja, uloga, aktivan, fitnescentar_korisnik_id) VALUES ('spankistepa', 'srb123','Stefan', 'Mladenovic', '066427302','stefanmladen@gmail.com', '03.11.2000.','TRENER', 'FALSE', 2);
 INSERT INTO KORISNIK (korisnicko_ime, lozinka, ime, prezime, kontakt_telefon, email_adresa, datum_rodjenja, uloga, aktivan, fitnescentar_korisnik_id) VALUES ('nikoladzoni', '1301n1k','Nikola', 'Petrovic', '065214546','nikolap@gmail.com', '13.01.2006.','TRENER', 'FALSE', 1);
 
-INSERT INTO TRENING (naziv, opis, tip_treninga, trajanje, korisnik_trening_id) VALUES ('Morning', 'Full body workout','CARDIO', '120', 3);
-INSERT INTO TRENING (naziv, opis, tip_treninga, trajanje, korisnik_trening_id) VALUES ('Gluteus&Core', 'Hard','CORE', '120', 3);
-INSERT INTO TRENING (naziv, opis, tip_treninga, trajanje, korisnik_trening_id) VALUES ('Tone Up', 'Medium','HIIT', '120', 7);
+INSERT INTO TRENING (naziv, opis, tip_treninga, trajanje, korisniktrening_id) VALUES ('Morning', 'Full body workout','CARDIO', '120', 3);
+INSERT INTO TRENING (naziv, opis, tip_treninga, trajanje, korisniktrening_id) VALUES ('Gluteus&Core', 'Hard','CORE', '120', 3);
+INSERT INTO TRENING (naziv, opis, tip_treninga, trajanje, korisniktrening_id) VALUES ('Tone Up', 'Medium','HIIT', '120', 7);
 
 INSERT INTO SALA (kapacitet, oznaka_sale, fitnescentarsala_id) VALUES ('20', 'A1', 2);
 INSERT INTO SALA (kapacitet, oznaka_sale, fitnescentarsala_id) VALUES ('30', 'A2', 1);

@@ -1,8 +1,13 @@
 package ac.rs.uns.ftn.fitnescentar.contoller;
 
+import ac.rs.uns.ftn.fitnescentar.model.Korisnik;
+import ac.rs.uns.ftn.fitnescentar.model.Sala;
 import ac.rs.uns.ftn.fitnescentar.model.TipTreninga;
 import ac.rs.uns.ftn.fitnescentar.model.Trening;
+import ac.rs.uns.ftn.fitnescentar.model.dto.SalaDTO;
 import ac.rs.uns.ftn.fitnescentar.model.dto.TreningDTO;
+import ac.rs.uns.ftn.fitnescentar.model.dto.TreningNewDTO;
+import ac.rs.uns.ftn.fitnescentar.service.KorisnikService;
 import ac.rs.uns.ftn.fitnescentar.service.TreningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,15 +18,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/api/treninzi", produces = MediaType.APPLICATION_JSON_VALUE)
 public class TreningController {
 
     private final TreningService treningService;
+    private final KorisnikService korisnikService;
 
     @Autowired
-    public TreningController(TreningService treningService){
+    public TreningController(TreningService treningService, KorisnikService korisnikService){
         this.treningService = treningService;
+        this.korisnikService = korisnikService;
     }
 
     //jedan trening
@@ -53,6 +61,21 @@ public class TreningController {
         }
 
         return new ResponseEntity<>(treninziDTOS, HttpStatus.OK);
+    }
+
+    //svi treninzi nekog trenera
+    @GetMapping(value = "/trener/{id}")
+    public ResponseEntity<List<TreningDTO>> getTreninziByTrener(@PathVariable("id")Long id){
+        List<Trening> treninzi = this.treningService.pretragaPoIdTrenera(id);
+
+        List<TreningDTO> treningDTOS = new ArrayList<>();
+
+        for(Trening trening : treninzi){
+            TreningDTO treningDTO = new TreningDTO(trening.getId(), trening.getNaziv(), trening.getOpis(), trening.getTipTreninga(), trening.getTrajanje());
+
+            treningDTOS.add(treningDTO);
+        }
+        return new ResponseEntity<>(treningDTOS, HttpStatus.OK);
     }
 
     //pretraga po nazivu
@@ -104,18 +127,36 @@ public class TreningController {
     }
 
     //novi trening
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+    @PostMapping(value = "/dodaj/{idTrenera}", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TreningDTO> createTrening(@RequestBody TreningDTO treningDTO) throws Exception {
+    public ResponseEntity<TreningNewDTO> createTrening(@PathVariable("idTrenera")Long idTrenera, @RequestBody TreningDTO treningDTO) throws Exception {
+
+        Trening trening = new Trening(treningDTO.getNaziv(), treningDTO.getOpis(), treningDTO.getTipTreninga(), treningDTO.getTrajanje());
+        Korisnik korisnik = korisnikService.findOne(idTrenera);
+
+        trening.setKorisniktrening(korisnik);
+        Trening newTrening = treningService.create(trening);
+
+        TreningNewDTO treningNewDTO = new TreningNewDTO(newTrening.getId(), newTrening.getNaziv(), newTrening.getOpis(), newTrening.getTipTreninga(), newTrening.getTrajanje(), idTrenera);
+
+        return new ResponseEntity<>(treningNewDTO, HttpStatus.CREATED);
+    }
+
+    @PutMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TreningDTO> updateTrening(@PathVariable Long id, @RequestBody TreningDTO treningDTO) throws Exception {
 
         Trening trening = new Trening(treningDTO.getNaziv(), treningDTO.getOpis(), treningDTO.getTipTreninga(), treningDTO.getTrajanje());
 
-        Trening newTrening = treningService.create(trening);
+        trening.setId(id);
 
-        TreningDTO newTreningDTO = new TreningDTO(newTrening.getId(), newTrening.getNaziv(), newTrening.getOpis(), newTrening.getTipTreninga(), newTrening.getTrajanje());
+        Trening updatedTrening = treningService.update(trening);
 
-        return new ResponseEntity<>(newTreningDTO, HttpStatus.CREATED);
+        TreningDTO updatedTreningDTO= new TreningDTO(updatedTrening.getId(), updatedTrening.getNaziv(), updatedTrening.getOpis(), updatedTrening.getTipTreninga(), updatedTrening.getTrajanje());
+
+        return new ResponseEntity<>(updatedTreningDTO, HttpStatus.OK);
     }
+
 
     //brisanje
     @DeleteMapping(value = "/{id}")

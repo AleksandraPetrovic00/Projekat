@@ -42,8 +42,7 @@ public class Termin implements Serializable {
 
     public Termin() {}
 
-    public Termin(Long id, int brojPrijavljenihClanova, Date vreme, double cena) {
-        this.id = id;
+    public Termin(int brojPrijavljenihClanova, Date vreme, double cena) {
         this.brojPrijavljenihClanova = brojPrijavljenihClanova;
         this.vreme = vreme;
         this.cena = cena;

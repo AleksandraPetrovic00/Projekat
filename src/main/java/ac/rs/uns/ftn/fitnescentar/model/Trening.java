@@ -27,7 +27,7 @@ public class Trening implements Serializable {
     public Trening() {}
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Korisnik korisnik_trening;
+    private Korisnik korisniktrening;
 
     //terminska lista
     @OneToMany(mappedBy = "treningtermin", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -80,12 +80,12 @@ public class Trening implements Serializable {
         this.trajanje = trajanje;
     }
 
-    public Korisnik getKorisnik_trening() {
-        return korisnik_trening;
+    public Korisnik getKorisniktrening() {
+        return korisniktrening;
     }
 
-    public void setKorisnik_trening(Korisnik korisnik_trening) {
-        this.korisnik_trening = korisnik_trening;
+    public void setKorisniktrening(Korisnik korisnik_trening) {
+        this.korisniktrening = korisnik_trening;
     }
 
     public Set<Termin> getTerminiTreninga() {
@@ -104,7 +104,7 @@ public class Trening implements Serializable {
                 ", opis='" + opis + '\'' +
                 ", tipTreninga=" + tipTreninga +
                 ", trajanje=" + trajanje +
-                ", korisnik_trening=" + korisnik_trening +
+                ", korisnik_trening=" + korisniktrening +
                 ", terminiTreninga=" + terminiTreninga +
                 '}';
     }

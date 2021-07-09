@@ -18,7 +18,11 @@ public interface TreningService {
 
     List<Trening> pretragaPoOpisu(String opis);
 
+    List<Trening> pretragaPoIdTrenera(Long id);
+
     Trening create(Trening trening) throws Exception;
+
+    Trening update(Trening trening) throws Exception;
 
     void delete(Long id);
 

@@ -1,10 +1,12 @@
 package ac.rs.uns.ftn.fitnescentar.contoller;
 
 import ac.rs.uns.ftn.fitnescentar.model.FitnesCentar;
+import ac.rs.uns.ftn.fitnescentar.model.Korisnik;
 import ac.rs.uns.ftn.fitnescentar.model.Sala;
 import ac.rs.uns.ftn.fitnescentar.model.dto.SalaDTO;
 import ac.rs.uns.ftn.fitnescentar.model.dto.SalaFcDTO;
 import ac.rs.uns.ftn.fitnescentar.service.FitnesCentarService;
+import ac.rs.uns.ftn.fitnescentar.service.KorisnikService;
 import ac.rs.uns.ftn.fitnescentar.service.SalaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,11 +24,13 @@ public class SalaController {
 
     private final SalaService salaService;
     private final FitnesCentarService fitnesCentarService;
+    private final KorisnikService korisnikService;
 
     @Autowired
-    public SalaController(SalaService salaService, FitnesCentarService fitnesCentarService) {
+    public SalaController(SalaService salaService, FitnesCentarService fitnesCentarService, KorisnikService korisnikService) {
         this.salaService = salaService;
         this.fitnesCentarService = fitnesCentarService;
+        this.korisnikService = korisnikService;
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -56,6 +60,22 @@ public class SalaController {
 
         return new ResponseEntity<>(salaDTOS, HttpStatus.OK);
 
+    }
+
+    @GetMapping(value = "/saleTrener/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<SalaDTO>> getSaleZaTrenera(@PathVariable("id") Long id) {
+
+        Korisnik korisnik = this.korisnikService.findOne(id);
+        List<Sala> salaList = this.salaService.pronadjiSveZaFitnesCentar(korisnik.getFitnescentar_korisnik().getId());
+
+        List<SalaDTO> salaDTOS = new ArrayList<>();
+
+        for (Sala sala : salaList) {
+            SalaDTO salaDTO = new SalaDTO(sala.getId(), sala.getKapacitet(), sala.getOznakaSale());
+            salaDTOS.add(salaDTO);
+        }
+
+        return  new ResponseEntity<>(salaDTOS, HttpStatus.OK);
     }
 
     @GetMapping(value = "/fitnesCentarSale/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

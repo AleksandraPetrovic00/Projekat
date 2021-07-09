@@ -2,6 +2,7 @@ package ac.rs.uns.ftn.fitnescentar.service;
 
 import ac.rs.uns.ftn.fitnescentar.model.Termin;
 import ac.rs.uns.ftn.fitnescentar.model.TipTreninga;
+import ac.rs.uns.ftn.fitnescentar.model.Trening;
 
 
 import java.sql.Date;
@@ -16,6 +17,8 @@ public interface TerminService {
     List<Termin> sviPoID();
 
     Termin findOne(Long id);
+
+    List<Termin> sviZaTrenera(Long id);
 
     List<Termin> sviPoCeniRastce();
 
@@ -38,5 +41,10 @@ public interface TerminService {
     List<Termin> pronadjiPoCeniINazivu(double cena, String naziv);
 
     List<Termin> pronadjiPrijavljeneTreninge(Long id);
+
+    Termin create(Termin termin) throws Exception;
+
+    Termin update(Termin termin) throws Exception;
+
 
 }

@@ -14,6 +14,8 @@ public interface TreningRepository extends JpaRepository<Trening, Long> {
 
     List<Trening> findAllByOpis(String opis);
 
+    List<Trening> findAllByKorisniktreningId(Long id);
+
 
 
 }

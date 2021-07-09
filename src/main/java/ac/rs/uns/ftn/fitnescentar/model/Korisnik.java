@@ -53,7 +53,7 @@ public class Korisnik implements Serializable {
         this.aktivan = aktivan;
     }
 
-    @OneToMany(mappedBy = "korisnik_trening", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "korisniktrening", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Trening> treninzi = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER)

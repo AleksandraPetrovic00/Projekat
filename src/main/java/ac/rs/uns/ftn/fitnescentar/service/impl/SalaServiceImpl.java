@@ -2,6 +2,7 @@ package ac.rs.uns.ftn.fitnescentar.service.impl;
 
 import ac.rs.uns.ftn.fitnescentar.model.Sala;
 import ac.rs.uns.ftn.fitnescentar.repository.FitnesCentarRepository;
+import ac.rs.uns.ftn.fitnescentar.repository.KorisnikRepository;
 import ac.rs.uns.ftn.fitnescentar.repository.SalaRepository;
 import ac.rs.uns.ftn.fitnescentar.service.SalaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,13 @@ public class SalaServiceImpl implements SalaService {
 
     private final SalaRepository salaRepository;
     private final FitnesCentarRepository fitnesCentarRepository;
+    private final KorisnikRepository korisnikRepository;
 
     @Autowired
-    public SalaServiceImpl(SalaRepository salaRepository, FitnesCentarRepository fitnesCentarRepository){
+    public SalaServiceImpl(SalaRepository salaRepository, FitnesCentarRepository fitnesCentarRepository, KorisnikRepository korisnikRepository){
         this.salaRepository = salaRepository;
         this.fitnesCentarRepository = fitnesCentarRepository;
+        this.korisnikRepository = korisnikRepository;
     }
     @Override
     public Sala findOne(Long id) {

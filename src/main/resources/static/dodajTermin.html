@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRENER - Dodaj termin</title>
+    <link rel="stylesheet" href="dodajTermin.css">
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <div class="title">Dodaj termin</div>
+    
+    <form class="addTermin" id="termin">
+        <div class="textbox">
+            <label id="cenalab">Cena termina:</label>
+            <input type="number" placeholder="cena" id="cena" required>
+        </div>
+
+        <div class="textbox">
+            <label id="vremelab">Vreme odrzavanja:</label>
+            <input type="date" placeholder="Vreme odrzavanja" id="vreme" required>
+        </div>
+
+        <button type="submit" class="button" id="terminSubmit">Submit</button>
+    </form>
+
+    <table class="content-table" id="table">
+        <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Izaberi salu</th>
+        </tr>
+        </thead>
+    
+        <tbody>
+        </tbody>
+    </table>
+
+    <script src="dodajTermin.js" defer></script>
+
+</body>
+</html>
