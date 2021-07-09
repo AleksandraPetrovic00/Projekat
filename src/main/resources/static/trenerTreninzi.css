@@ -17,11 +17,11 @@ body{
 .title{
     position: absolute;
     float: left;
-    top: 10%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
     color:#9ae42a;
-    font-size: 50px;
+    font-size: 30px;
     border-bottom: 1px solid #ADFF2F
 }
 

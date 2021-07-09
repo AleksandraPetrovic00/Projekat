@@ -33,7 +33,6 @@ $(document).ready(function() {
             console.log("ERROR: ", response);
         }
     });
-})
 
 
     function pretrazi(){
@@ -187,7 +186,7 @@ $(document).ready(function() {
     }
 
 
-});*/
+});
 
 
 $('#tipovi').on('input', function(){

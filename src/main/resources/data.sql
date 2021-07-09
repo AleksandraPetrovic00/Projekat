@@ -27,7 +27,6 @@ INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, tren
 INSERT INTO TERMIN (broj_prijavljenih_clanova, vreme, cena, sala_termin_id, treningtermin_id) VALUES ('12', '2021-06-01', '450', 1, 2);
 
 INSERT INTO OCENA (ocena, korisnik_ocena_id, terminocena_id) VALUES ('2', 2, 5);
-INSERT INTO OCENA (ocena, korisnik_ocena_id, terminocena_id) VALUES ('3', 3, 2);
 
 INSERT INTO PRIJAVLJENI_TRENINZI(korisnik_id, termin_id) VALUES (2, 3);
 INSERT INTO PRIJAVLJENI_TRENINZI(korisnik_id, termin_id) VALUES (2, 4);
