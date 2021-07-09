@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    let uloga = window.localStorage.getItem("Uloga");
     let id = window.localStorage.getItem("Id");
     $.ajax({
         type: "GET",

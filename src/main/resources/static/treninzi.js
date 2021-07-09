@@ -1,3 +1,5 @@
+let pretrazeniTreninzi;
+let treninzi;
 $(document).ready(function() {
     $.ajax({
         type: "GET",
@@ -6,8 +8,11 @@ $(document).ready(function() {
         success: function(response) {
             console.log("USPESNO", response);
             console.log(response);
+            treninzi = response;
+            pretrazeniTreninzi = JSON.parse(JSON.stringify(treninzi));
 
             for(let trening of response){
+                for(let trening1 of trening.listaTreninga){
                 let row = "<tr>";
                 row+= "<td>" + trening.id + "</td>";
                 row+= "<td>" + trening.naziv + "</td>";
@@ -22,13 +27,49 @@ $(document).ready(function() {
 
                 $('.content-table').append(row);
             }
+        }
         },
         error: function(response) {
             console.log("ERROR: ", response);
         }
     });
+})
 
-    $("#pretraga").on("click", function(event){
+
+    function pretrazi(){
+        let naziv = $('#naziv').val();
+        let opis = $('#opis').val();
+        let cena = $('#cena').val();
+        let vreme = $('#vreme').val();
+
+        pretrazeniTreninzi = JSON.parse(JSON.stringify(trening));
+        if(naziv!=""){
+            pretrazeniTreninzi = pretrazeniTreninzi.filter(function (trening){
+                return trening.naziv.includes(naziv);
+            })
+        }
+        if(opis!=""){
+            pretrazeniTreninzi = pretrazeniTreninzi.filter(function (trening){
+                return trening.opis.includes(opis);
+            })
+        }
+        if(cena!=""){
+            for(let i in pretrazeniTreninzi){
+                pretrazeniTreninzi[i].listaTreninga = pretrazeniTreninzi[i].listaTreninga.filter(function (trening1){
+                    return trening.cena<=cena;
+                })
+            }
+        }
+        if(vreme!=""){
+            for(let i in pretrazeniTreninzi){
+                pretrazeniTreninzi[i].listaTreninga = pretrazeniTreninzi[i].listaTreninga.filter(function (trening1){
+                    return (trening.vreme > vreme);
+                })
+            }
+        }
+    }
+
+    /*$("#pretraga").on("click", function(event){
     event.preventDefault();
 
     let naziv = $('#naziv').val();
@@ -36,10 +77,10 @@ $(document).ready(function() {
     let cena = $('#cena').val();
     let vreme = $('#vreme').val();
 
-    if($('#naziv').val()!=""){
+    if((naziv!="")&&(cena!="")){
         $.ajax({
             type:"GET",
-            url:"http://localhost:8090/api/termini/naziv/"+$('#naziv').val(),
+            url:"http://localhost:8090/api/termini/nazivcena?cena="+$('#cena').val()+"&naziv="+$('#naziv').val(),
             dataType: "json",
 
         success: function(response){
@@ -71,48 +112,12 @@ $(document).ready(function() {
             }
         });
 
-    }
+    }*/
 
-    if($('#opis').val()!=""){
+    /*if($('#opis').val()!=""){
         $.ajax({
             type:"GET",
             url:"http://localhost:8090/api/termini/opis/"+$('#opis').val(),
-            dataType: "json",
-
-        success: function(response){
-            console.log(response);
-
-            $('.content-table tbody').html("");
-
-            for(let trening of response){
-                let row = "<tr>";
-                row+= "<td>" + trening.id + "</td>";
-                row+= "<td>" + trening.naziv + "</td>";
-                row+= "<td>" + trening.tipTreninga + "</td>";
-                row+= "<td>" + trening.opis + "</td>";
-                row+= "<td>" + trening.vreme + "</td>";
-                row+= "<td>" + trening.oznakaSale + "</td>";
-                row+= "<td>" + trening.trajanje + "</td>";
-                row+= "<td>" + trening.cena + "</td>";
-                row+= "<td>" + trening.brojPrijavljenihClanova + "</td>";
-                row+="</tr>";
-
-                $('.content-table tbody').append(row);
-            }
-
-        },
-
-            error: function(response){
-                console.log("ERROR", response);
-            }
-        });
-
-    }
-
-    if($('#cena').val()!=""){
-        $.ajax({
-            type:"GET",
-            url:"http://localhost:8090/api/termini/cena/"+$('#cena').val(),
             dataType: "json",
 
         success: function(response){
@@ -182,7 +187,7 @@ $(document).ready(function() {
     }
 
 
-});
+});*/
 
 
 $('#tipovi').on('input', function(){

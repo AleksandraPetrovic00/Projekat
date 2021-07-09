@@ -46,5 +46,9 @@ public interface TerminService {
 
     Termin update(Termin termin) throws Exception;
 
+    List<Termin> pretragaPoNazivuOpisuCeniVremenu(String naziv, String opis, double cena, Date vreme);
+
+    List<Termin> pretragaPoNazivuOpisuCeniVremenuTipu(String naziv, String opis, double cena, Date vreme, TipTreninga tipTreninga);
+
 
 }

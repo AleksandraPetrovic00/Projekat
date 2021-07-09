@@ -4,20 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADMINISTRATION PAGE</title>
+    <title>ADMIN PAGE</title>
+    <link rel="stylesheet" href="admin.css">
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous">
+    </script>
 </head>
-<style>
-    body{
-        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)),  url(../images/img.jpg);
-        display:flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-</style>
 <body>
-    
+
+    <div class="title">
+        <h1>Administration page</h1>
+    </div>
+
+
+
+    <div class="nav">
+        <ul>
+            <li><a href="fitnesCentri.html" id="home">Fitnes centri</a></li>
+            <li><a href="dodajSalu.html" id="logIn">Dodaj salu</a></li>
+            <li><a href="dodavanjeFitnessCentra.html" id="signUp">Dodaj fitnes centar</a></li>
+            <li><a href="administratorskaRegistracijaTrenera.html" id="coach">Registruj trenera</a></li>
+            <li><a href="odobravanjeZahtevaTrenera.html" id="zahtev">Zahtevi trenera</a></li>
+            <li><a href="ukloniTrenera.html" id="delete">Ukloni trenera</a></li>
+        </ul>
+    </div>
+
+    <div class="logo">
+        <h3>Fitness Centers Athlemotive</h3>
+    </div>
+
+    <script src="admin.js"></script>
+
+
 </body>
 </html>

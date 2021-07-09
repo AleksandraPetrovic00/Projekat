@@ -17,16 +17,25 @@
         data: JSON.stringify(newKorisnik),
         success: function(response){
             console.log(response);
+            var korisnik = {
+                "id": response.id,
+                "uloga": response.uloga
+            }
+            localStorage.setItem("korisnik", JSON.stringify(korisnik));
 
-            alert("Korisnik " +response.id + " je ulogovan");
             window.localStorage.setItem("Id", response.id);
-            window.localStorage.setItem("Uloga", response.uloga)
+            window.localStorage.setItem("Uloga", response.uloga);
             if(localStorage.getItem("Uloga")=="ADMINISTRATOR"){
                 window.location.href = "admin.html"
+                alert("Korisnik " +response.id + " je ulogovan");
             }else if(localStorage.getItem("Uloga")=="TRENER"){
                 window.location.href = "trener.html";
-            }else{
+                alert("Korisnik " +response.id + " je ulogovan");
+            }else if(localStorage.getItem("Uloga")=="CLAN"){
                 window.location.href = "clan.html";
+                alert("Korisnik " +response.id + " je ulogovan");
+            }else{
+                window.location.href="login.html";
             }
         },
         error:function(e){

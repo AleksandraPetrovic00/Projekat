@@ -34,20 +34,11 @@ public class PageController {
     @GetMapping(value = "login")
     public String login(){return "login.html";}
 
-    @GetMapping(value = "odobravanjeZahtevaTrenera")
-    public String odobravanjeZahtevaTrenera(@RequestBody KorisnikDTO korisnikDTO)
-    {
-        Korisnik korisnik = new Korisnik(korisnikDTO.getKorisnickoIme(), korisnikDTO.getLozinka(), korisnikDTO.getIme(), korisnikDTO.getPrezime(), korisnikDTO.getKontaktTelefon(), korisnikDTO.getEmailAdresa(), korisnikDTO.getDatumRodjenja(), korisnikDTO.getUloga(), korisnikDTO.isAktivan());
-        if(korisnik.getUloga()==Uloge.ADMINISTRATOR) {
-            return "odobravanjeZahtevaTrenera.html";
-        }
-        else{
-            return "error.html";
-        }
-    }
-
     @GetMapping(value = "listaTreninga")
     public String listaTreninga(){return "Treninzi.html";}
+
+    @GetMapping(value = "clan")
+    public String clan(){return "clan.html";}
 
     @GetMapping(value = "admin")
     public String admin(){return "admin.html";}

@@ -159,6 +159,22 @@ public class TerminServiceImpl implements TerminService {
         return termini;
     }
 
+    @Override
+    public List<Termin> pretragaPoNazivuOpisuCeniVremenu(String naziv, String opis, double cena, Date vreme){
+        List<Termin> termini = this.terminRepository.findAllByTreningterminNazivContainingAndTreningterminOpisContainingAndCenaLessThanEqualAndVremeGreaterThan(naziv, opis, cena, vreme);
+
+        return termini;
+    }
+
+    @Override
+    public List<Termin> pretragaPoNazivuOpisuCeniVremenuTipu(String naziv, String opis, double cena, Date vreme, TipTreninga tipTreninga){
+        List<Termin> termini = this.terminRepository.findAllByTreningterminNazivContainingAndTreningterminOpisContainingAndCenaLessThanEqualAndVremeGreaterThanAndTreningterminTipTreninga(naziv, opis, cena, vreme, tipTreninga);
+
+        return termini;
+    }
+
+
+
 
 
 

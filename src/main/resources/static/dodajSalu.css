@@ -90,6 +90,8 @@ body{
 }
 
 .content-table{
+    position: relative;
+    left: 25%;
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 20px;

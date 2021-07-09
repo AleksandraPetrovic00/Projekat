@@ -290,4 +290,34 @@ public class TerminController {
         return new ResponseEntity<>(terminTrDTOS, HttpStatus.OK);
     }
 
+    @GetMapping(value="/naziv/{naziv}/{opis}/{cena}/{vreme}")
+    public ResponseEntity<List<TerminTrDTO>> getTreninziByNazivOpisCenaVreme(@PathVariable("naziv") String naziv, @PathVariable("opis")String opis, @PathVariable("cena")double cena, @PathVariable("vreme")Date vreme) {
+        List<Termin> termini = this.terminService.pretragaPoNazivuOpisuCeniVremenu(naziv, opis, cena, vreme);
+
+        List<TerminTrDTO> terminTrDTOS = new ArrayList<>();
+
+        for(Termin termin :  termini) {
+            TerminTrDTO terminTrDTO =  new TerminTrDTO(termin.getId(), termin.getTreningtermin().getNaziv(), termin.getTreningtermin().getTipTreninga(), termin.getTreningtermin().getOpis(), termin.getVreme(), termin.getSala_termin().getOznakaSale(), termin.getTreningtermin().getTrajanje(), termin.getCena(), termin.getBrojPrijavljenihClanova());
+
+            terminTrDTOS.add(terminTrDTO);
+        }
+
+        return new ResponseEntity<>(terminTrDTOS, HttpStatus.OK);
+    }
+
+    @GetMapping(value="/naziv/{naziv}/{opis}/{cena}/{vreme}/tip")
+    public ResponseEntity<List<TerminTrDTO>> getTreninziByNazivOpisCenaVreme(@PathVariable("naziv") String naziv, @PathVariable("opis")String opis, @PathVariable("cena")double cena, @PathVariable("vreme")Date vreme, @RequestParam TipTreninga tipTreninga) {
+        List<Termin> termini = this.terminService.pretragaPoNazivuOpisuCeniVremenuTipu(naziv, opis, cena, vreme, tipTreninga);
+
+        List<TerminTrDTO> terminTrDTOS = new ArrayList<>();
+
+        for(Termin termin :  termini) {
+            TerminTrDTO terminTrDTO =  new TerminTrDTO(termin.getId(), termin.getTreningtermin().getNaziv(), termin.getTreningtermin().getTipTreninga(), termin.getTreningtermin().getOpis(), termin.getVreme(), termin.getSala_termin().getOznakaSale(), termin.getTreningtermin().getTrajanje(), termin.getCena(), termin.getBrojPrijavljenihClanova());
+
+            terminTrDTOS.add(terminTrDTO);
+        }
+
+        return new ResponseEntity<>(terminTrDTOS, HttpStatus.OK);
+    }
+
 }
