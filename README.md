@@ -1,2 +1,2 @@
-# Projekat
-Sistem za rad fitness centra.
+# Project
+Fitness center management system.
